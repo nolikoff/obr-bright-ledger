@@ -36,6 +36,9 @@ import StatStyledInput from "./StatStyledInput";
 import { Action, BulkEditorState } from "./types";
 import Hidden from "@/components/icons/Hidden";
 import Shown from "@/components/icons/Shown";
+import HiddenHealth from "./components/HiddenHealth";
+import HealthBar from "./components/HealthBar";
+import HitPoints from "./components/HitPoints";
 import {
   Tooltip,
   TooltipContent,
