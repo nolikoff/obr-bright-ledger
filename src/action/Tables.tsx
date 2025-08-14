@@ -490,7 +490,7 @@ function HealthBarMenu({
         }}
       >
         <TableCell
-          className="items-center justify-center gap-2"
+          className="items-center justify-center gap-1 p-1"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr 1fr",
