@@ -454,18 +454,20 @@ function HealthBarMenu({
   };
   
   return (
-    <TableCell className="py-0">
+    <TableCell
+      className="py-0"
+      onMouseEnter={() => {
+        console.log("Mouse Enter");
+        setIsOpen(true);
+      }}
+      onMouseLeave={() => {
+        console.log("Mouse Leave");
+        setIsOpen(false);
+      }}
+    >
       <Button
         variant={"ghost"}
         size={"icon"}
-        onMouseEnter={() => {
-          console.log("Mouse Enter");
-          setIsOpen(true);
-        }}
-        onMouseLeave={() => {
-          console.log("Mouse Leave");
-          setIsOpen(false);
-        }}
       >
         {renderMainIcon()}
       </Button>
