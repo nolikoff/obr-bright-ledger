@@ -6,8 +6,13 @@ type Token = {
   maxHealth: number;
   tempHealth: number;
   armorClass: number;
-  hideStats: boolean;
+  isTeam: boolean;
+  isHidden: boolean;
+  healthBar: number;
+  
   group: number;
   index: number;
+
+  hideStats: boolean;
 };
 export default Token;
