@@ -38,7 +38,7 @@ function createPlayerMenu(
             {
               key: [
                 "metadata",
-                "com.owlbear-rodeo-hp-tracker/metadata",
+                "obr-bright-ledger.onrender.com/metadata",
                 "hide",
               ],
               value: true,
