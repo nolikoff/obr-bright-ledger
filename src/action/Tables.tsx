@@ -227,7 +227,7 @@ export function SceneTokensTable({
                     />
                   )}
                   <div
-                    style=style={{
+                    style={{
                       borderLeft:
                         "thick solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent")
                     }} 
