@@ -459,53 +459,46 @@ function HealthBarMenu({
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <Tooltip>
-        <TooltipTrigger asChild>
+      <Button
+        variant={"ghost"}
+        size={"icon"}
+      >
+        {renderMainIcon()}
+      </Button>
+
+      {isOpen && (
+        <div className="absolute top-full mt-1 flex items-center gap-2 bg-neutral-900 rounded-full px-2 py-1 shadow-lg animate-fadeIn">
           <Button
             variant={"ghost"}
             size={"icon"}
+            onClick={() => 
+              handleSelect("hidden health")
+            }
           >
-            {renderMainIcon()}
+            <HiddenHealth />
           </Button>
-
-          {isOpen && (
-            <div className="absolute top-full mt-1 flex items-center gap-2 bg-neutral-900 rounded-full px-2 py-1 shadow-lg animate-fadeIn">
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => 
-                  handleSelect("hidden health")
-                }
-              >
-                <HiddenHealth />
-              </Button>
-              
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => 
-                  handleSelect("health bar")
-                }
-              >
-                <HealthBar />
-              </Button>
-              
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => 
-                  handleSelect("hit points")
-                }
-              >
-                <HitPoints />
-              </Button>
-            </div>
-          )}
-        </TooltipTrigger>
-        <TooltipContent side="right">
-          {token.hideStats ? "Dungeon Master Only" : "Player Editable"}
-        </TooltipContent>
-      </Tooltip>
+          
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            onClick={() => 
+              handleSelect("health bar")
+            }
+          >
+            <HealthBar />
+          </Button>
+          
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            onClick={() => 
+              handleSelect("hit points")
+            }
+          >
+            <HitPoints />
+          </Button>
+        </div>
+      )}
     </TableCell>
   );
 }
