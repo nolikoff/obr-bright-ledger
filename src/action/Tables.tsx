@@ -428,9 +428,11 @@ function OwnerSelector({
 function HealthBarMenu({
   token,
   setTokens,
+  playerRole,
 }: {
   token: Token;
   setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
+  playerRole: "PLAYER" | "GM";
 }): JSX.Element {
   const [open, setOpen] = useState(false);
   
