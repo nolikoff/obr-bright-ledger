@@ -13,3 +13,5 @@ export const Strangers = () => (
     />
   </svg>
 );
+
+export default Strangers;
