@@ -607,7 +607,6 @@ function StatInput({
       name={name}
       inputProps={{
         // className: "w-full",
-        style: "width: 52px",
         value: value,
         onChange: (e) => setValue(e.target.value),
         onBlur: (e) => {
