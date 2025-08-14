@@ -8,7 +8,8 @@ import {
   OFFSET_METADATA_ID,
   BAR_AT_TOP_METADATA_ID,
   SHOW_BARS_METADATA_ID,
-  SEGMENTS_METADATA_ID,
+  TEAM_SEGMENTS_METADATA_ID,
+  STRANGERS_SEGMENTS_METADATA_ID,
   NAME_TAGS_METADATA_ID,
 } from "@/metadataHelpers/settingMetadataIds";
 import OBR, { Metadata } from "@owlbear-rodeo/sdk";
@@ -19,7 +20,8 @@ export default function useSettings(saveLocation: SaveLocation) {
   const [offset, setOffset] = useState<string>();
   const [justification, setJustification] = useState<"TOP" | "BOTTOM">();
   const [healthBarsVisible, setHealthBarsVisible] = useState<boolean>();
-  const [segments, setSegments] = useState<string>();
+  const [teamSegments, setTeamSegments] = useState<string>();
+  const [strangersSegments, setStrangersSegments] = useState<string>();
   const [nameTags, setNameTags] = useState<boolean>();
 
   useEffect(() => {
@@ -50,8 +52,12 @@ export default function useSettings(saveLocation: SaveLocation) {
       else setHealthBarsVisible(false);
 
       // Segments - visibility is tied to healthBarsVisible, don't need undefined information
-      setSegments(
-        readNumberFromObject(settings, SEGMENTS_METADATA_ID).toString(),
+      setTeamSegments(
+        readNumberFromObject(settings, TEAM_SEGMENTS_METADATA_ID).toString(),
+      );
+
+      setStrangersSegments(
+        readNumberFromObject(settings, STRANGERS_SEGMENTS_METADATA_ID).toString(),
       );
 
       // Name Tags
@@ -79,8 +85,10 @@ export default function useSettings(saveLocation: SaveLocation) {
     setJustification,
     healthBarsVisible,
     setHealthBarsVisible,
-    segments,
-    setSegments,
+    teamSegments,
+    setTeamSegments,
+    strangersSegments,
+    setStrangersSegments,
     nameTags,
     setNameTags,
   };
