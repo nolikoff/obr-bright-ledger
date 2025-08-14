@@ -8,11 +8,11 @@ import { Vector2, Image, Math2 } from "@owlbear-rodeo/sdk";
  * @param segments - Optional parameter to only show a certain number of segments in the bar.
  * @returns The portion of the bar to be filled (between 0 and 1).
  */
-export function getFillPortion(value: number, maxValue: number, segments = 0) {
+export function getFillPortion(value: number, maxValue: number, teamSegments = 0, strangersSegments = 0) {
   if (value <= 0) return 0;
   if (value >= maxValue) return 1;
-  if (segments === 0) return value / maxValue;
-  return Math.ceil((value / maxValue) * segments) / segments;
+  if (teamSegments === 0) return value / maxValue;
+  return Math.ceil((value / maxValue) * teamSegments) / teamSegments;
 }
 
 /**
