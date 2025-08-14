@@ -12,7 +12,6 @@ import {
 import { MoveVertical } from "../components/icons/MoveVertical";
 import { AlignVerticalJustifyEnd } from "../components/icons/AlignVerticalJustifyEnd";
 import { AlignVerticalJustifyStart } from "../components/icons/AlignVerticalJustifyStart";
-import { Drama } from "../components/icons/Drama";
 import { Team } from "../components/icons/Team";
 import { Strangers } from "../components/icons/Strangers";
 import { NameTag } from "../components/icons/NameTag";
@@ -373,50 +372,6 @@ function JustificationSettings({
         </Button>
       }
       last={removeHandler === undefined}
-    >
-      {removeHandler === undefined ? (
-        <></>
-      ) : (
-        <RemoveSetting removeHandler={removeHandler} />
-      )}
-    </SettingsRow>
-  );
-}
-
-function ShowHealthBarsSettings({
-  healthBarsVisible,
-  setHealthBarsVisible,
-  saveLocation,
-  removeHandler,
-}: {
-  healthBarsVisible: boolean;
-  setHealthBarsVisible: React.Dispatch<
-    React.SetStateAction<boolean | undefined>
-  >;
-  saveLocation: SaveLocation;
-  removeHandler?: () => void;
-}) {
-  return (
-    <SettingsRow
-      icon={<Drama />}
-      label="Show Health Bars"
-      description="Show dungeon master only health bars, but not the text, to players "
-      action={
-        <Switch
-          inputProps={{
-            checked: healthBarsVisible,
-            onChange: (e) => {
-              setHealthBarsVisible(e.target.checked);
-              updateSettingMetadata(
-                SHOW_BARS_METADATA_ID,
-                e.target.checked,
-                saveLocation,
-              );
-            },
-          }}
-        />
-      }
-      last={!healthBarsVisible && removeHandler === undefined}
     >
       {removeHandler === undefined ? (
         <></>
