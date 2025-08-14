@@ -40,6 +40,8 @@ export default function Settings(): JSX.Element {
     (sceneSettings.offset === undefined ? 0 : 1) +
     (sceneSettings.justification === undefined ? 0 : 1) +
     (sceneSettings.healthBarsVisible === undefined ? 0 : 1) +
+    (sceneSettings.teamSegments === undefined ? 0 : 1) +
+    (sceneSettings.strangersSegments === undefined ? 0 : 1) +
     (sceneSettings.nameTags === undefined ? 0 : 1);
 
   return (
@@ -88,8 +90,14 @@ export default function Settings(): JSX.Element {
                     <ShowHealthBarsSettings
                       healthBarsVisible={roomSettings.healthBarsVisible}
                       setHealthBarsVisible={roomSettings.setHealthBarsVisible}
+                      saveLocation="ROOM"
+                    />
+                    <TeamSegmentsSettings
                       teamSegments={roomSettings.teamSegments}
                       setTeamSegments={roomSettings.setTeamSegments}
+                      saveLocation="ROOM"
+                    />
+                    <StrangersSegmentsSettings
                       strangersSegments={roomSettings.strangersSegments}
                       setStrangersSegments={roomSettings.setStrangersSegments}
                       saveLocation="ROOM"
@@ -211,7 +219,7 @@ export default function Settings(): JSX.Element {
                     </div>
                   )}
 
-                  {sceneOverridesCount < 4 && (
+                  {sceneOverridesCount < 6 && (
                     <div className="flex flex-wrap gap-2 pl-0.5 pr-8">
                       <AddSceneSettingButton
                         visible={sceneSettings.offset === undefined}
