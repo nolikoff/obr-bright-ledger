@@ -31,7 +31,8 @@ let settings: Settings = {
   verticalOffset: 0,
   barAtTop: false,
   showBars: false,
-  segments: 0,
+  teamSegments: 0,
+  strangersSegments: 0,
   nameTags: false,
 };
 let callbacksStarted = false;
@@ -307,7 +308,8 @@ function createAttachments(item: Image, id: string, role: "PLAYER" | "GM", dpi: 
         statsVisible,
         origin,
         "short",
-        settings.segments,
+        settings.teamSegments,
+        settings.strangersSegments,
       ),
     );
   }
