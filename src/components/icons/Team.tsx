@@ -13,3 +13,5 @@ export const Team = () => (
     />
   </svg>
 );
+
+export default Team;
