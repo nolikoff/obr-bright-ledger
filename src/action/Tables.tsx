@@ -45,7 +45,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import refreshAllHealthBars from "@/background/statAttachments";
-
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   DndContext,
   closestCenter,
