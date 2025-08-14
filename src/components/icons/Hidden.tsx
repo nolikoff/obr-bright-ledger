@@ -13,3 +13,5 @@ export const Hidden = () => (
     />
   </svg>
 );
+
+export default Hidden;
