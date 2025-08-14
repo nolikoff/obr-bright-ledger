@@ -177,8 +177,28 @@ function DefaultGMSceneTokensTable({
                 appState.includedItems,
               );
 
+              const handleKeyDown = (
+                event: React.KeyboardEvent<HTMLTableRowElement>,
+              ) => {
+                switch (event.code) {
+                  case "ArrowLeft":
+                    previousDamageOption();
+                    break;
+                  case "ArrowRight":
+                    nextDamageOption();
+                    break;
+                  case "KeyR":
+                    resetDamageOption();
+                    break;
+                }
+              };
+
               return (
-                <div>
+                <SortableTableRow
+                  key={token.item.id}
+                  id={token.item.id}
+                  onKeyDown={handleKeyDown}
+                >
                   <div
                     style={{
                       borderLeft:
@@ -251,7 +271,7 @@ function DefaultGMSceneTokensTable({
                       </div>
                     </TableCell>
                   </div>
-                </div>
+                </SortableTableRow>
               );
             })}
           </TableBody>
