@@ -51,14 +51,21 @@ export default function useSettings(saveLocation: SaveLocation) {
         setHealthBarsVisible(healthBarsVisible);
       else setHealthBarsVisible(false);
 
-      // Segments - visibility is tied to healthBarsVisible, don't need undefined information
-      setTeamSegments(
-        readNumberFromObject(settings, TEAM_SEGMENTS_METADATA_ID).toString(),
-      );
+      // Team Segments
+      const teamSegments = readNumberFromObject(settings, TEAM_SEGMENTS_METADATA_ID);
+      if (saveLocation === "SCENE" && teamSegments === undefined)
+        setTeamSegments(undefined);
+      else if (typeof teamSegments === "number" && !Number.isNaN(teamSegments))
+        setTeamSegments(teamSegments.toString());
+      else setTeamSegments("0");
 
-      setStrangersSegments(
-        readNumberFromObject(settings, STRANGERS_SEGMENTS_METADATA_ID).toString(),
-      );
+      // Strangers Segments
+      const strangersSegments = readNumberFromObject(settings, STRANGERS_SEGMENTS_METADATA_ID);
+      if (saveLocation === "SCENE" && strangersSegments === undefined)
+        setStrangersSegments(undefined);
+      else if (typeof strangersSegments === "number" && !Number.isNaN(strangersSegments))
+        setStrangersSegments(strangersSegments.toString());
+      else setStrangersSegments("0");
 
       // Name Tags
       const nameTags = safeObjectRead(settings, NAME_TAGS_METADATA_ID);
