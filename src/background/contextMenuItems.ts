@@ -38,7 +38,7 @@ function createPlayerMenu(
             {
               key: [
                 "metadata",
-                "obr-bright-ledger.onrender.com/metadata",
+                "com.onrender.obr-bright-ledger/metadata",
                 "hide",
               ],
               value: true,
