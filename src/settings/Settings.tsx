@@ -50,36 +50,8 @@ export default function Settings(): JSX.Element {
             <div>
               <h1 className="text-2xl font-light">Settings</h1>
               <p className="text-xs text-mirage-400">
-                <i>Stat Bubbles for D&D</i>
+                <i>Bright Ledger</i>
               </p>
-            </div>
-            <div className="flex gap-2 pr-0.5">
-              <LinkButton
-                name="Patreon"
-                size="large"
-                icon={<Patreon />}
-                href={"https://www.patreon.com/SeamusFinlayson"}
-              />
-              <LinkButton
-                name="Change Log"
-                size="large"
-                icon={<History />}
-                href={"https://www.patreon.com/collection/306916?view=expanded"}
-              />
-              <LinkButton
-                name="Instructions"
-                size="large"
-                icon={<QuestionMark />}
-                href={
-                  "https://github.com/SeamusFinlayson/Bubbles-for-Owlbear-Rodeo?tab=readme-ov-file#how-it-works"
-                }
-              />
-              <LinkButton
-                name="Report Bug"
-                size="large"
-                icon={<Bug />}
-                href="https://discord.gg/WMp9bky4be"
-              />
             </div>
           </div>
 
@@ -174,46 +146,53 @@ export default function Settings(): JSX.Element {
                           }}
                         />
                       )}
-                      {sceneSettings.healthBarsVisible !== undefined &&
-                        sceneSettings.teamSegments !== undefined && (
-                          <ShowHealthBarsSettings
-                            healthBarsVisible={sceneSettings.healthBarsVisible}
-                            setHealthBarsVisible={
-                              sceneSettings.setHealthBarsVisible
-                            }
-                            teamSegments={sceneSettings.teamSegments}
-                            setTeamSegments={sceneSettings.setTeamSegments}
-                            saveLocation="SCENE"
-                            removeHandler={() => {
-                              sceneSettings.setHealthBarsVisible(undefined);
-                              updateSettingMetadata(
-                                SHOW_BARS_METADATA_ID,
-                                undefined,
-                                "SCENE",
-                              );
-                            }}
-                          />
-                        )}
-                      {sceneSettings.healthBarsVisible !== undefined &&
-                        sceneSettings.strangersSegments !== undefined && (
-                          <ShowHealthBarsSettings
-                            healthBarsVisible={sceneSettings.healthBarsVisible}
-                            setHealthBarsVisible={
-                              sceneSettings.setHealthBarsVisible
-                            }
-                            strangersSegments={sceneSettings.strangersSegments}
-                            setStrangersSegments={sceneSettings.setStrangersSegments}
-                            saveLocation="SCENE"
-                            removeHandler={() => {
-                              sceneSettings.setHealthBarsVisible(undefined);
-                              updateSettingMetadata(
-                                SHOW_BARS_METADATA_ID,
-                                undefined,
-                                "SCENE",
-                              );
-                            }}
-                          />
-                        )}
+                      {sceneSettings.healthBarsVisible !== undefined && (
+                        <ShowHealthBarsSettings
+                          healthBarsVisible={sceneSettings.healthBarsVisible}
+                          setHealthBarsVisible={
+                            sceneSettings.setHealthBarsVisible
+                          }
+                          saveLocation="SCENE"
+                          removeHandler={() => {
+                            sceneSettings.setHealthBarsVisible(undefined);
+                            updateSettingMetadata(
+                              SHOW_BARS_METADATA_ID,
+                              undefined,
+                              "SCENE",
+                            );
+                          }}
+                        />
+                      )}
+                      {sceneSettings.teamSegments !== undefined && (
+                        <TeamSegmentsSettings
+                          teamSegments={sceneSettings.teamSegments}
+                          setTeamSegments={sceneSettings.setTeamSegments}
+                          saveLocation="SCENE"
+                          removeHandler={() => {
+                            sceneSettings.setTeamSegments(undefined);
+                            updateSettingMetadata(
+                              TEAM_SEGMENTS_METADATA_ID,
+                              undefined,
+                              "SCENE",
+                            );
+                          }}
+                        />
+                      )}
+                      {sceneSettings.strangersSegments !== undefined && (
+                        <StrangerSegmentsSettings
+                          strangersSegments={sceneSettings.strangersSegments}
+                          setStrangersSegments={sceneSettings.setStrangersSegments}
+                          saveLocation="SCENE"
+                          removeHandler={() => {
+                            sceneSettings.setStrangersSegments(undefined);
+                            updateSettingMetadata(
+                              STRANGERS_SEGMENTS_METADATA_ID,
+                              undefined,
+                              "SCENE",
+                            );
+                          }}
+                        />
+                      )}
                       {sceneSettings.nameTags !== undefined && (
                         <NameTagSettings
                           nameTags={sceneSettings.nameTags}
@@ -264,21 +243,39 @@ export default function Settings(): JSX.Element {
                       </AddSceneSettingButton>
                       <AddSceneSettingButton
                         visible={sceneSettings.healthBarsVisible === undefined}
-                        initializeSettings={async () => {
+                        initializeSettings={() => {
                           sceneSettings.setHealthBarsVisible(
                             roomSettings.healthBarsVisible,
                           );
-                          sceneSettings.setTeamSegments(roomSettings.teamSegments);
-                          sceneSettings.setStrangersSegments(roomSettings.strangersSegments);
-                          await updateSettingMetadata(
+                          updateSettingMetadata(
                             SHOW_BARS_METADATA_ID,
                             roomSettings.healthBarsVisible,
                             "SCENE",
+                          );
+                        }}
+                      >
+                        + Show Health Bars
+                      </AddSceneSettingButton>
+                      <AddSceneSettingButton
+                        visible={sceneSettings.teamSegments === undefined}
+                        initializeSettings={() => {
+                          sceneSettings.setTeamSegments(
+                            roomSettings.teamSegments,
                           );
                           updateSettingMetadata(
                             TEAM_SEGMENTS_METADATA_ID,
                             parseFloat(roomSettings.teamSegments as string),
                             "SCENE",
+                          );
+                        }}
+                      >
+                        + Segments of Team
+                      </AddSceneSettingButton>
+                      <AddSceneSettingButton
+                        visible={sceneSettings.strangersSegments === undefined}
+                        initializeSettings={() => {
+                          sceneSettings.setStrangersSegments(
+                            roomSettings.strangersSegments,
                           );
                           updateSettingMetadata(
                             STRANGERS_SEGMENTS_METADATA_ID,
@@ -287,7 +284,7 @@ export default function Settings(): JSX.Element {
                           );
                         }}
                       >
-                        + Show Health Bars
+                        + Segments of Strangers
                       </AddSceneSettingButton>
                       <AddSceneSettingButton
                         visible={sceneSettings.nameTags === undefined}
@@ -429,10 +426,6 @@ function JustificationSettings({
 function ShowHealthBarsSettings({
   healthBarsVisible,
   setHealthBarsVisible,
-  teamSegments,
-  setTeamSegments,
-  strangersSegments,
-  setStrangersSegments,
   saveLocation,
   removeHandler,
 }: {
@@ -440,10 +433,6 @@ function ShowHealthBarsSettings({
   setHealthBarsVisible: React.Dispatch<
     React.SetStateAction<boolean | undefined>
   >;
-  teamSegments: string;
-  setTeamSegments: React.Dispatch<React.SetStateAction<string | undefined>>;
-  strangersSegments: string;
-  setStrangersSegments: React.Dispatch<React.SetStateAction<string | undefined>>;
   saveLocation: SaveLocation;
   removeHandler?: () => void;
 }) {
@@ -469,48 +458,86 @@ function ShowHealthBarsSettings({
       }
       last={!healthBarsVisible && removeHandler === undefined}
     >
-      <SettingsRow
-        icon={<Team />}
-        label="Team Segments"
-        description="Only show when creatures drop to certain fractions of their health"
-        action={
-          <Input
-            className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
-            value={teamSegments}
-            onChange={(e) => setTeamSegments(e.target.value)}
-            onBlur={(e) => {
-              let value = Math.trunc(parseFloat(e.target.value));
-              if (Number.isNaN(value)) value = 0;
-              setTeamSegments(value.toString());
-              updateSettingMetadata(TEAM_SEGMENTS_METADATA_ID, value, saveLocation);
-            }}
-          />
-        }
-        collapseElement={!healthBarsVisible}
-        last={removeHandler === undefined}
-      >
-      </SettingsRow>
-      <SettingsRow
-        icon={<Strangers />}
-        label="Strangers Segments"
-        description="Only show when creatures drop to certain fractions of their health"
-        action={
-          <Input
-            className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
-            value={strangersSegments}
-            onChange={(e) => setStrangersSegments(e.target.value)}
-            onBlur={(e) => {
-              let value = Math.trunc(parseFloat(e.target.value));
-              if (Number.isNaN(value)) value = 0;
-              setStrangersSegments(value.toString());
-              updateSettingMetadata(STRANGERS_SEGMENTS_METADATA_ID, value, saveLocation);
-            }}
-          />
-        }
-        collapseElement={!healthBarsVisible}
-        last={removeHandler === undefined}
-      >
-      </SettingsRow>
+      {removeHandler === undefined ? (
+        <></>
+      ) : (
+        <RemoveSetting removeHandler={removeHandler} />
+      )}
+    </SettingsRow>
+  );
+}
+
+function TeamSegmentsSettings({
+  teamSegments,
+  setTeamSegments,
+  saveLocation,
+  removeHandler,
+}: {
+  teamSegments: string;
+  setTeamSegments: React.Dispatch<React.SetStateAction<string | undefined>>;
+  saveLocation: SaveLocation;
+  removeHandler?: () => void;
+}) {
+  return (
+    <SettingsRow
+      icon={<Team />}
+      label="Segments of Team"
+      description="Only show when creatures drop to certain fractions of their health"
+      action={
+        <Input
+          className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
+          value={teamSegments}
+          onChange={(e) => setTeamSegments(e.target.value)}
+          onBlur={(e) => {
+            let value = Math.trunc(parseFloat(e.target.value));
+            if (Number.isNaN(value)) value = 0;
+            setTeamSegments(value.toString());
+            updateSettingMetadata(TEAM_SEGMENTS_METADATA_ID, value, saveLocation);
+          }}
+        />
+      }
+      last={removeHandler === undefined}
+    >
+      {removeHandler === undefined ? (
+        <></>
+      ) : (
+        <RemoveSetting removeHandler={removeHandler} />
+      )}
+    </SettingsRow>
+  );
+}
+
+function StrangersSegmentsSettings({
+  strangersSegments,
+  setStrangersSegments,
+  saveLocation,
+  removeHandler,
+}: {
+  strangersSegments: string;
+  setStrangersSegments: React.Dispatch<React.SetStateAction<string | undefined>>;
+  saveLocation: SaveLocation;
+  removeHandler?: () => void;
+}) {
+  return (
+    <SettingsRow
+      icon={<Strangers />}
+      label="Segments of Strangers"
+      description="Only show when creatures drop to certain fractions of their health"
+      action={
+        <Input
+          className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
+          value={strangersSegments}
+          onChange={(e) => setStrangersSegments(e.target.value)}
+          onBlur={(e) => {
+            let value = Math.trunc(parseFloat(e.target.value));
+            if (Number.isNaN(value)) value = 0;
+            setStrangersSegments(value.toString());
+            updateSettingMetadata(STRANGERS_SEGMENTS_METADATA_ID, value, saveLocation);
+          }}
+        />
+      }
+      last={removeHandler === undefined}
+    >
       {removeHandler === undefined ? (
         <></>
       ) : (
