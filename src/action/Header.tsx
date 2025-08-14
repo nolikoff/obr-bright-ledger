@@ -14,7 +14,6 @@ import { GearIcon } from "@radix-ui/react-icons";
 import OBR from "@owlbear-rodeo/sdk";
 import { getPluginId } from "@/getPluginId";
 import LinkButton from "@/settings/LinkButton";
-import { QuestionMark } from "@/components/icons/QuestionMark";
 import { History } from "@/components/icons/History";
 
 export default function Header({
