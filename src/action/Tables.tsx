@@ -92,6 +92,19 @@ export function SceneTokensTable({
     }),
   );
 
+  const [players, setPlayers] = useState<Array<Player>>([]);
+  
+  useEffect(() => {
+      const initPlayerList = async () => {
+          setPlayers(await OBR.party.getPlayers());
+      };
+
+      initPlayerList();
+      return OBR.party.onChange((players) => {
+          setPlayers(players);
+      });
+  }, []);
+
   return (
     <DndContext
       sensors={sensors}
