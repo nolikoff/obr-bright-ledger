@@ -21,9 +21,12 @@ export default function StatStyledInput({
         <Input
           {...inputProps}
           name={name}
+          style={{
+            width: "52px"
+          }}
           className={cn(
             "h-[32px]",
-            "w-[60px]",
+            // "w-[60px]",
             {
               "bg-stat-red/10 dark:bg-stat-red-dark/5":
                 name === "health" || name === "maxHealth",
