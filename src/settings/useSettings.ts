@@ -57,7 +57,7 @@ export default function useSettings(saveLocation: SaveLocation) {
         setTeamSegments(undefined);
       else if (typeof teamSegments === "number" && !Number.isNaN(teamSegments))
         setTeamSegments(teamSegments.toString());
-      else setTeamSegments("0");
+      else setTeamSegments(undefined);
 
       // Strangers Segments
       const strangersSegments = readNumberFromObject(settings, STRANGERS_SEGMENTS_METADATA_ID);
@@ -65,7 +65,7 @@ export default function useSettings(saveLocation: SaveLocation) {
         setStrangersSegments(undefined);
       else if (typeof strangersSegments === "number" && !Number.isNaN(strangersSegments))
         setStrangersSegments(strangersSegments.toString());
-      else setStrangersSegments("0");
+      else setStrangersSegments(undefined);
 
       // Name Tags
       const nameTags = safeObjectRead(settings, NAME_TAGS_METADATA_ID);
