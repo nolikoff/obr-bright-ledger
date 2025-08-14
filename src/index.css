@@ -22,3 +22,18 @@
   filter: drop-shadow(1px 1px 0 #bb99ff) drop-shadow(-1px 1px 0 #bb99ff)
     drop-shadow(1px -1px 0 #bb99ff) drop-shadow(-1px -1px 0 #bb99ff);
 }
+
+@keyframes fadeInMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-100%);
+  }
+}
+
+.animate-fadeInMenu {
+  animation: fadeInMenu 0.15s ease-out forwards;
+}
