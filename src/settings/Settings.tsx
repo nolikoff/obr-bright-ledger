@@ -17,7 +17,6 @@ import { Team } from "../components/icons/Team";
 import { Strangers } from "../components/icons/Strangers";
 import { NameTag } from "../components/icons/NameTag";
 import LinkButton from "./LinkButton";
-import { QuestionMark } from "@/components/icons/QuestionMark";
 import { History } from "@/components/icons/History";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
