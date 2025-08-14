@@ -485,7 +485,7 @@ function HealthBarMenu({
 
       {isOpen && (
         <div
-          className="absolute inset-0 -translate-y-1/2 flex items-center justify-center gap-2 animate-fadeInMenu"
+          className="items-center justify-center gap-2 animate-fadeInMenu"
         >
           <Button
             variant={"ghost"}
