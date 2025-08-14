@@ -429,8 +429,8 @@ function ShowHealthBarsSettings({
   setHealthBarsVisible,
   teamSegments,
   setTeamSegments,
-  strangersSegments
-  setStrangersSegments
+  strangersSegments,
+  setStrangersSegments,
   saveLocation,
   removeHandler,
 }: {
