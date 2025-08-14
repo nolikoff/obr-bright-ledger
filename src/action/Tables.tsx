@@ -473,7 +473,7 @@ function HealthBarMenu({
       </Button>
 
       {isOpen && (
-        <TableCell className="py-0">
+        <div>
           <Button
             variant={"ghost"}
             size={"icon"}
@@ -503,7 +503,7 @@ function HealthBarMenu({
           >
             <HitPoints />
           </Button>
-        </TableCell>
+        </div>
       )}
     </TableCell>
   );
