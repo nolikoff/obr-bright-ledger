@@ -473,7 +473,6 @@ function HealthBarMenu({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger 
-        asChild
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -485,9 +484,12 @@ function HealthBarMenu({
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-72 p-0"
-        align="start"
-        style={{ height: playerRole === "GM" ? 440 : 245 }}
+        className="p-0"
+        align="center"
+        style={{ 
+          height: 22,
+          width: 88,
+        }}
       >
         <TableCell
           className="py-0"
