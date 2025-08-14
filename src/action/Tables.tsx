@@ -211,7 +211,7 @@ function DefaultGMSceneTokensTable({
                       playerSelection={playerSelection}
                     />
                     
-                    <AccessButton token={token} setTokens={setTokens} />
+                    <VisibilityButton token={token} setTokens={setTokens} />
                   
                     <OwnerSelector token={token} setTokens={setTokens} />
                     
@@ -337,15 +337,15 @@ function VisibilityButton({
             variant={"ghost"}
             size={"icon"}
             name={
-              token.hideStats
-                ? "Make Stats Visible to Players"
-                : "Hide Stats from players"
+              token.isHidden
+                ? "Show"
+                : "Hide"
             }
             onClick={() =>
-              handleHiddenUpdate(token.item.id, token.hideStats, setTokens)
+              handleVisibilityUpdate(token.item.id, token.isHidden, setTokens)
             }
           >
-            {token.hideStats ? (
+            {token.isHidden ? (
               <div className="text-primary-500 dark:text-primary-dark">
                 <Hidden />
               </div>
@@ -355,7 +355,7 @@ function VisibilityButton({
           </Button>
         </TooltipTrigger>
         <TooltipContent side="right">
-          {token.hideStats ? "Hidden" : "Shown"}
+          {token.isHidden ? "Hidden" : "Shown"}
         </TooltipContent>
       </Tooltip>
     </TableCell>
@@ -484,6 +484,28 @@ async function handleHiddenUpdate(
   });
   writeTokenValueToItem(itemId, name, value);
 }
+
+async function handleVisibilityUpdate(
+  itemId: string,
+  previousValue: boolean,
+  setTokens: React.Dispatch<React.SetStateAction<Token[]>>,
+) {
+  const name: InputName = "isHidden";
+  if (!isInputName(name)) throw "Error: invalid input name.";
+
+  const value = !previousValue;
+
+  setTokens((prevTokens) => {
+    for (let i = 0; i < prevTokens.length; i++) {
+      // console.log(prevTokens[i]);
+      if (prevTokens[i].item.id === itemId)
+        prevTokens[i] = { ...prevTokens[i], [name]: value } as Token;
+    }
+    return [...prevTokens];
+  });
+  writeTokenValueToItem(itemId, name, value);
+}
+
 
 function handleStatUpdate(
   itemId: string,
