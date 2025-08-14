@@ -157,9 +157,7 @@ export default function Settings(): JSX.Element {
                       {sceneSettings.healthBarsVisible !== undefined && (
                         <ShowHealthBarsSettings
                           healthBarsVisible={sceneSettings.healthBarsVisible}
-                          setHealthBarsVisible={
-                            sceneSettings.setHealthBarsVisible
-                          }
+                          setHealthBarsVisible={sceneSettings.setHealthBarsVisible}
                           saveLocation="SCENE"
                           removeHandler={() => {
                             sceneSettings.setHealthBarsVisible(undefined);
@@ -237,9 +235,7 @@ export default function Settings(): JSX.Element {
                       <AddSceneSettingButton
                         visible={sceneSettings.justification === undefined}
                         initializeSettings={() => {
-                          sceneSettings.setJustification(
-                            roomSettings.justification,
-                          );
+                          sceneSettings.setJustification(roomSettings.justification);
                           updateSettingMetadata(
                             BAR_AT_TOP_METADATA_ID,
                             roomSettings.justification === "TOP" ? true : false,
@@ -252,9 +248,7 @@ export default function Settings(): JSX.Element {
                       <AddSceneSettingButton
                         visible={sceneSettings.healthBarsVisible === undefined}
                         initializeSettings={() => {
-                          sceneSettings.setHealthBarsVisible(
-                            roomSettings.healthBarsVisible,
-                          );
+                          sceneSettings.setHealthBarsVisible(roomSettings.healthBarsVisible);
                           updateSettingMetadata(
                             SHOW_BARS_METADATA_ID,
                             roomSettings.healthBarsVisible,
@@ -267,9 +261,7 @@ export default function Settings(): JSX.Element {
                       <AddSceneSettingButton
                         visible={sceneSettings.teamSegments === undefined}
                         initializeSettings={() => {
-                          sceneSettings.setTeamSegments(
-                            roomSettings.teamSegments,
-                          );
+                          sceneSettings.setTeamSegments(roomSettings.teamSegments);
                           updateSettingMetadata(
                             TEAM_SEGMENTS_METADATA_ID,
                             parseFloat(roomSettings.teamSegments as string),
@@ -282,9 +274,7 @@ export default function Settings(): JSX.Element {
                       <AddSceneSettingButton
                         visible={sceneSettings.strangersSegments === undefined}
                         initializeSettings={() => {
-                          sceneSettings.setStrangersSegments(
-                            roomSettings.strangersSegments,
-                          );
+                          sceneSettings.setStrangersSegments(roomSettings.strangersSegments);
                           updateSettingMetadata(
                             STRANGERS_SEGMENTS_METADATA_ID,
                             parseFloat(roomSettings.strangersSegments as string),
