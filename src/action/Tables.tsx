@@ -34,8 +34,8 @@ import {
 } from "@/statInputHelpers";
 import StatStyledInput from "./StatStyledInput";
 import { Action, BulkEditorState } from "./types";
-import BookLock from "@/components/icons/BookLock";
-import BookOpen from "@/components/icons/BookOpen";
+import Hidden from "@/components/icons/Hidden";
+import Shown from "@/components/icons/Shown";
 import {
   Tooltip,
   TooltipContent,
@@ -307,10 +307,10 @@ function AccessButton({
           >
             {token.hideStats ? (
               <div className="text-primary-500 dark:text-primary-dark">
-                <BookLock />
+                <Hidden />
               </div>
             ) : (
-              <BookOpen />
+              <Shown />
             )}
           </Button>
         </TooltipTrigger>
