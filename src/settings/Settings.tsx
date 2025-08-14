@@ -187,7 +187,7 @@ export default function Settings(): JSX.Element {
                         />
                       )}
                       {sceneSettings.strangersSegments !== undefined && (
-                        <StrangerSegmentsSettings
+                        <StrangersSegmentsSettings
                           strangersSegments={sceneSettings.strangersSegments}
                           setStrangersSegments={sceneSettings.setStrangersSegments}
                           saveLocation="SCENE"
