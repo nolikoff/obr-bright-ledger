@@ -214,6 +214,8 @@ function DefaultGMSceneTokensTable({
                     <VisibilityButton token={token} setTokens={setTokens} />
                   
                     <OwnerSelector token={token} setTokens={setTokens} />
+
+                    <HealthBarMenu token={token} setTokens={setTokens} />
                     
                     <TableCell>
                       <div className="grid min-w-[128px] grid-cols-4 justify-items-stretch gap-2 grid-template-columns-[2fr 1fr 1fr]">
@@ -412,6 +414,95 @@ function OwnerSelector({
           </SelectGroup>
         </SelectContent>
       </Select>
+    </TableCell>
+  );
+}
+
+function HealthBarMenu({
+  token,
+  setTokens,
+}: {
+  token: Token;
+  setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
+}): JSX.Element {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<
+    "hidden health" | "health bar" | "hit points" | null
+  >(null);
+
+  const renderMainIcon = () => {
+    switch (selected) {
+      case "hidden health":
+        return <HiddenHealth />;
+      case "health bar":
+        return <HealthBar />;
+      case "hit points":
+        return <HitPoints />;
+      default:
+        return <HiddenHealth />;
+    }
+  };
+
+  const handleSelect = (
+    value: "hidden health" | "health bar" | "hit points"
+  ) => {
+    setSelected(value);
+    setIsOpen(false);
+  };
+  
+  return (
+    <TableCell
+      className="py-0"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+          >
+            {renderMainIcon()}
+          </Button>
+
+          {isOpen && (
+            <div className="absolute top-full mt-1 flex items-center gap-2 bg-neutral-900 rounded-full px-2 py-1 shadow-lg animate-fadeIn">
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                onClick={() => 
+                  handleSelect("hidden health")
+                }
+              >
+                <HiddenHealth />
+              </Button>
+              
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                onClick={() => 
+                  handleSelect("health bar")
+                }
+              >
+                <HealthBar />
+              </Button>
+              
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                onClick={() => 
+                  handleSelect("hit points")
+                }
+              >
+                <HitPoints />
+              </Button>
+            </div>
+          )}
+        </TooltipTrigger>
+        <TooltipContent side="right">
+          {token.hideStats ? "Dungeon Master Only" : "Player Editable"}
+        </TooltipContent>
+      </Tooltip>
     </TableCell>
   );
 }
