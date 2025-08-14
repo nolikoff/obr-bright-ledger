@@ -267,6 +267,7 @@ export default function Settings(): JSX.Element {
                             roomSettings.healthBarsVisible,
                           );
                           sceneSettings.setTeamSegments(roomSettings.teamSegments);
+                          sceneSettings.setStrangersSegments(roomSettings.strangersSegments);
                           await updateSettingMetadata(
                             SHOW_BARS_METADATA_ID,
                             roomSettings.healthBarsVisible,
@@ -275,12 +276,6 @@ export default function Settings(): JSX.Element {
                           updateSettingMetadata(
                             TEAM_SEGMENTS_METADATA_ID,
                             parseFloat(roomSettings.teamSegments as string),
-                            "SCENE",
-                          );
-                          sceneSettings.setStrangersSegments(roomSettings.strangersSegments);
-                          await updateSettingMetadata(
-                            SHOW_BARS_METADATA_ID,
-                            roomSettings.healthBarsVisible,
                             "SCENE",
                           );
                           updateSettingMetadata(
