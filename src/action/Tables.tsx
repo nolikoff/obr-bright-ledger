@@ -459,6 +459,7 @@ function HealthBarMenu({
       clearTimeout(hideTimeout.current);
       hideTimeout.current = null;
     }
+    console.log("Enter");
     setIsOpen(true);
   };
 
@@ -466,6 +467,7 @@ function HealthBarMenu({
     hideTimeout.current = window.setTimeout(() => {
       setIsOpen(false);
     }, 150);
+    console.log("Leave");
   };
   
   return (
