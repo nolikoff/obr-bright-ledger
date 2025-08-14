@@ -6,7 +6,7 @@
   "homepage_url": "https://github.com/nolikoff/obr-bright-ledger",
   "description": "Health Bar and Armor Class for your adventures (based on Stat Bubbles for D&D by Seamus Finlayson).",
   "background_url": "/src/background/background.html",
-  "icon": "/logo.svg",
+  "icon": "/logo.png",
   "action": {
       "title": "Bright Ledger",
       "icon": "/icon.svg",
