@@ -53,7 +53,7 @@ export default function useSettings(saveLocation: SaveLocation) {
 
       // Team Segments
       const teamSegments = readNumberFromObject(settings, TEAM_SEGMENTS_METADATA_ID);
-      alerts(typeof teamSegments);
+      console.log("team", typeof teamSegments);
       if (saveLocation === "SCENE" && teamSegments === undefined)
         setTeamSegments(undefined);
       else if (typeof teamSegments === "number" && !Number.isNaN(teamSegments))
@@ -62,6 +62,7 @@ export default function useSettings(saveLocation: SaveLocation) {
 
       // Strangers Segments
       const strangersSegments = readNumberFromObject(settings, STRANGERS_SEGMENTS_METADATA_ID);
+      console.log("strangers", typeof strangersSegments);
       if (saveLocation === "SCENE" && strangersSegments === undefined)
         setStrangersSegments(undefined);
       else if (typeof strangersSegments === "number" && !Number.isNaN(strangersSegments))
