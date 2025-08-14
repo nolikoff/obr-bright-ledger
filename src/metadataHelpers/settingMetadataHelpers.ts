@@ -4,7 +4,8 @@ import {
   BAR_AT_TOP_METADATA_ID,
   NAME_TAGS_METADATA_ID,
   OFFSET_METADATA_ID,
-  SEGMENTS_METADATA_ID,
+  TEAM_SEGMENTS_METADATA_ID,
+  STRANGERS_SEGMENTS_METADATA_ID,
   SettingMetadataId,
   SHOW_BARS_METADATA_ID,
 } from "./settingMetadataIds";
@@ -51,7 +52,8 @@ export type Settings = {
   barAtTop: boolean;
   nameTags: boolean;
   showBars: boolean;
-  segments: number;
+  teamSegments: number;
+  strangersSegments: number;
 };
 
 export function parseSettings(metadata: unknown): Settings {
@@ -60,6 +62,7 @@ export function parseSettings(metadata: unknown): Settings {
     barAtTop: readBooleanFromObject(metadata, BAR_AT_TOP_METADATA_ID),
     nameTags: readBooleanFromObject(metadata, NAME_TAGS_METADATA_ID),
     showBars: readBooleanFromObject(metadata, SHOW_BARS_METADATA_ID),
-    segments: readNumberFromObject(metadata, SEGMENTS_METADATA_ID),
+    teamSegments: readNumberFromObject(metadata, TEAM_SEGMENTS_METADATA_ID),
+    strangersSegments: readNumberFromObject(metadata, STRANGERS_SEGMENTS_METADATA_ID),
   };
 }
