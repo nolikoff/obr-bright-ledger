@@ -337,15 +337,15 @@ function VisibilityButton({
             variant={"ghost"}
             size={"icon"}
             name={
-              token.isHidden
+              token.hideStats
                 ? "Show"
                 : "Hide"
             }
             onClick={() =>
-              handleVisibilityUpdate(token.item.id, token.isHidden, setTokens)
+              handleVisibilityUpdate(token.item.id, token.hideStats, setTokens)
             }
           >
-            {token.isHidden ? (
+            {token.hideStats ? (
               <div className="text-primary-500 dark:text-primary-dark">
                 <Hidden />
               </div>
@@ -355,7 +355,7 @@ function VisibilityButton({
           </Button>
         </TooltipTrigger>
         <TooltipContent side="right">
-          {token.isHidden ? "Hidden" : "Shown"}
+          {token.hideStats ? "Hidden" : "Shown"}
         </TooltipContent>
       </Tooltip>
     </TableCell>
@@ -490,7 +490,7 @@ async function handleVisibilityUpdate(
   previousValue: boolean,
   setTokens: React.Dispatch<React.SetStateAction<Token[]>>,
 ) {
-  const name: InputName = "isHidden";
+  const name: InputName = "hideStats";
   if (!isInputName(name)) throw "Error: invalid input name.";
 
   const value = !previousValue;
