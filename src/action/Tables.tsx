@@ -458,14 +458,20 @@ function HealthBarMenu({
       <Button
         variant={"ghost"}
         size={"icon"}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
+        onMouseEnter={() =>
+          console.log("Mouse Enter");
+          setIsOpen(true)
+        }
+        onMouseLeave={() =>
+          console.log("Mouse Leave");
+          setIsOpen(false)
+        }
       >
         {renderMainIcon()}
       </Button>
 
       {isOpen && (
-        <div className="absolute top-full mt-1 flex items-center gap-2 bg-neutral-900 rounded-full px-2 py-1 shadow-lg animate-fadeIn">
+        <TableCell className="py-0">
           <Button
             variant={"ghost"}
             size={"icon"}
@@ -495,7 +501,7 @@ function HealthBarMenu({
           >
             <HitPoints />
           </Button>
-        </div>
+        </TableCell>
       )}
     </TableCell>
   );
