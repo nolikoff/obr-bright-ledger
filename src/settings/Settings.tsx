@@ -24,7 +24,8 @@ import {
   OFFSET_METADATA_ID,
   BAR_AT_TOP_METADATA_ID,
   SHOW_BARS_METADATA_ID,
-  SEGMENTS_METADATA_ID,
+  TEAM_SEGMENTS_METADATA_ID,
+  STRANGERS_SEGMENTS_METADATA_ID,
   NAME_TAGS_METADATA_ID,
 } from "@/metadataHelpers/settingMetadataIds";
 import useSettings from "./useSettings";
@@ -96,7 +97,8 @@ export default function Settings(): JSX.Element {
                 roomSettings.offset !== undefined &&
                 roomSettings.justification !== undefined &&
                 roomSettings.healthBarsVisible !== undefined &&
-                roomSettings.segments !== undefined &&
+                roomSettings.teamSegments !== undefined &&
+                roomSettings.strangersSegments !== undefined &&
                 roomSettings.nameTags !== undefined && (
                   <div className="flex h-max flex-col justify-start gap-2 text-base">
                     <VerticalOffsetSettings
@@ -112,8 +114,10 @@ export default function Settings(): JSX.Element {
                     <ShowHealthBarsSettings
                       healthBarsVisible={roomSettings.healthBarsVisible}
                       setHealthBarsVisible={roomSettings.setHealthBarsVisible}
-                      segments={roomSettings.segments}
-                      setSegments={roomSettings.setSegments}
+                      teamSegments={roomSettings.teamSegments}
+                      setTeamSegments={roomSettings.setTeamSegments}
+                      strangersSegments={roomSettings.strangersSegments}
+                      setStrangersSegments={roomSettings.setStrangersSegments}
                       saveLocation="ROOM"
                     />
                     <NameTagSettings
@@ -169,14 +173,34 @@ export default function Settings(): JSX.Element {
                         />
                       )}
                       {sceneSettings.healthBarsVisible !== undefined &&
-                        sceneSettings.segments !== undefined && (
+                        sceneSettings.teamSegments !== undefined && (
                           <ShowHealthBarsSettings
                             healthBarsVisible={sceneSettings.healthBarsVisible}
                             setHealthBarsVisible={
                               sceneSettings.setHealthBarsVisible
                             }
-                            segments={sceneSettings.segments}
-                            setSegments={sceneSettings.setSegments}
+                            teamSegments={sceneSettings.teamSegments}
+                            setTeamSegments={sceneSettings.setTeamSegments}
+                            saveLocation="SCENE"
+                            removeHandler={() => {
+                              sceneSettings.setHealthBarsVisible(undefined);
+                              updateSettingMetadata(
+                                SHOW_BARS_METADATA_ID,
+                                undefined,
+                                "SCENE",
+                              );
+                            }}
+                          />
+                        )}
+                      {sceneSettings.healthBarsVisible !== undefined &&
+                        sceneSettings.strangersSegments !== undefined && (
+                          <ShowHealthBarsSettings
+                            healthBarsVisible={sceneSettings.healthBarsVisible}
+                            setHealthBarsVisible={
+                              sceneSettings.setHealthBarsVisible
+                            }
+                            strangersSegments={sceneSettings.strangersSegments}
+                            setStrangersSegments={sceneSettings.setStrangersSegments}
                             saveLocation="SCENE"
                             removeHandler={() => {
                               sceneSettings.setHealthBarsVisible(undefined);
@@ -242,15 +266,26 @@ export default function Settings(): JSX.Element {
                           sceneSettings.setHealthBarsVisible(
                             roomSettings.healthBarsVisible,
                           );
-                          sceneSettings.setSegments(roomSettings.segments);
+                          sceneSettings.setTeamSegments(roomSettings.teamSegments);
                           await updateSettingMetadata(
                             SHOW_BARS_METADATA_ID,
                             roomSettings.healthBarsVisible,
                             "SCENE",
                           );
                           updateSettingMetadata(
-                            SEGMENTS_METADATA_ID,
-                            parseFloat(roomSettings.segments as string),
+                            TEAM_SEGMENTS_METADATA_ID,
+                            parseFloat(roomSettings.teamSegments as string),
+                            "SCENE",
+                          );
+                          sceneSettings.setStrangersSegments(roomSettings.strangersSegments);
+                          await updateSettingMetadata(
+                            SHOW_BARS_METADATA_ID,
+                            roomSettings.healthBarsVisible,
+                            "SCENE",
+                          );
+                          updateSettingMetadata(
+                            STRANGERS_SEGMENTS_METADATA_ID,
+                            parseFloat(roomSettings.strangersSegments as string),
                             "SCENE",
                           );
                         }}
@@ -397,8 +432,10 @@ function JustificationSettings({
 function ShowHealthBarsSettings({
   healthBarsVisible,
   setHealthBarsVisible,
-  segments,
-  setSegments,
+  teamSegments,
+  setTeamSegments,
+  strangersSegments
+  setStrangersSegments
   saveLocation,
   removeHandler,
 }: {
@@ -406,8 +443,10 @@ function ShowHealthBarsSettings({
   setHealthBarsVisible: React.Dispatch<
     React.SetStateAction<boolean | undefined>
   >;
-  segments: string;
-  setSegments: React.Dispatch<React.SetStateAction<string | undefined>>;
+  teamSegments: string;
+  setTeamSegments: React.Dispatch<React.SetStateAction<string | undefined>>;
+  strangersSegments: string;
+  setStrangersSegments: React.Dispatch<React.SetStateAction<string | undefined>>;
   saveLocation: SaveLocation;
   removeHandler?: () => void;
 }) {
@@ -434,18 +473,37 @@ function ShowHealthBarsSettings({
       last={!healthBarsVisible && removeHandler === undefined}
     >
       <SubSettingsRow
-        label="Segments"
+        label="Team Segments"
         description="Only show when creatures drop to certain fractions of their health"
         action={
           <Input
             className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
-            value={segments}
-            onChange={(e) => setSegments(e.target.value)}
+            value={teamSegments}
+            onChange={(e) => setTeamSegments(e.target.value)}
             onBlur={(e) => {
               let value = Math.trunc(parseFloat(e.target.value));
               if (Number.isNaN(value)) value = 0;
-              setSegments(value.toString());
-              updateSettingMetadata(SEGMENTS_METADATA_ID, value, saveLocation);
+              setTeamSegments(value.toString());
+              updateSettingMetadata(TEAM_SEGMENTS_METADATA_ID, value, saveLocation);
+            }}
+          />
+        }
+        collapseElement={!healthBarsVisible}
+        last={removeHandler === undefined}
+      />
+      <SubSettingsRow
+        label="Strangers Segments"
+        description="Only show when creatures drop to certain fractions of their health"
+        action={
+          <Input
+            className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
+            value={strangersSegments}
+            onChange={(e) => setStrangersSegments(e.target.value)}
+            onBlur={(e) => {
+              let value = Math.trunc(parseFloat(e.target.value));
+              if (Number.isNaN(value)) value = 0;
+              setStrangersSegments(value.toString());
+              updateSettingMetadata(STRANGERS_SEGMENTS_METADATA_ID, value, saveLocation);
             }}
           />
         }
