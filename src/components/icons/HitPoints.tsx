@@ -25,3 +25,5 @@ export const HitPoints = () => (
     />
   </svg>
 );
+
+export default HitPoints;
