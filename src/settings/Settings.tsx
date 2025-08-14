@@ -39,7 +39,6 @@ export default function Settings(): JSX.Element {
   const sceneOverridesCount =
     (sceneSettings.offset === undefined ? 0 : 1) +
     (sceneSettings.justification === undefined ? 0 : 1) +
-    (sceneSettings.healthBarsVisible === undefined ? 0 : 1) +
     (sceneSettings.teamSegments === undefined ? 0 : 1) +
     (sceneSettings.strangersSegments === undefined ? 0 : 1) +
     (sceneSettings.nameTags === undefined ? 0 : 1);
@@ -72,7 +71,6 @@ export default function Settings(): JSX.Element {
               {roomSettings.initializationDone &&
                 roomSettings.offset !== undefined &&
                 roomSettings.justification !== undefined &&
-                roomSettings.healthBarsVisible !== undefined &&
                 roomSettings.teamSegments !== undefined &&
                 roomSettings.strangersSegments !== undefined &&
                 roomSettings.nameTags !== undefined && (
@@ -85,11 +83,6 @@ export default function Settings(): JSX.Element {
                     <JustificationSettings
                       justification={roomSettings.justification}
                       setJustification={roomSettings.setJustification}
-                      saveLocation="ROOM"
-                    />
-                    <ShowHealthBarsSettings
-                      healthBarsVisible={roomSettings.healthBarsVisible}
-                      setHealthBarsVisible={roomSettings.setHealthBarsVisible}
                       saveLocation="ROOM"
                     />
                     <TeamSegmentsSettings
@@ -148,21 +141,6 @@ export default function Settings(): JSX.Element {
                             sceneSettings.setJustification(undefined);
                             updateSettingMetadata(
                               BAR_AT_TOP_METADATA_ID,
-                              undefined,
-                              "SCENE",
-                            );
-                          }}
-                        />
-                      )}
-                      {sceneSettings.healthBarsVisible !== undefined && (
-                        <ShowHealthBarsSettings
-                          healthBarsVisible={sceneSettings.healthBarsVisible}
-                          setHealthBarsVisible={sceneSettings.setHealthBarsVisible}
-                          saveLocation="SCENE"
-                          removeHandler={() => {
-                            sceneSettings.setHealthBarsVisible(undefined);
-                            updateSettingMetadata(
-                              SHOW_BARS_METADATA_ID,
                               undefined,
                               "SCENE",
                             );
@@ -244,19 +222,6 @@ export default function Settings(): JSX.Element {
                         }}
                       >
                         + Justification
-                      </AddSceneSettingButton>
-                      <AddSceneSettingButton
-                        visible={sceneSettings.healthBarsVisible === undefined}
-                        initializeSettings={() => {
-                          sceneSettings.setHealthBarsVisible(roomSettings.healthBarsVisible);
-                          updateSettingMetadata(
-                            SHOW_BARS_METADATA_ID,
-                            roomSettings.healthBarsVisible,
-                            "SCENE",
-                          );
-                        }}
-                      >
-                        + Show Health Bars
                       </AddSceneSettingButton>
                       <AddSceneSettingButton
                         visible={sceneSettings.teamSegments === undefined}
