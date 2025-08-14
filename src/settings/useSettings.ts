@@ -53,6 +53,7 @@ export default function useSettings(saveLocation: SaveLocation) {
 
       // Team Segments
       const teamSegments = readNumberFromObject(settings, TEAM_SEGMENTS_METADATA_ID);
+      alerts(typeof teamSegments);
       if (saveLocation === "SCENE" && teamSegments === undefined)
         setTeamSegments(undefined);
       else if (typeof teamSegments === "number" && !Number.isNaN(teamSegments))
