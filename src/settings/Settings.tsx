@@ -445,7 +445,7 @@ function TeamSegmentsSettings({
     <SettingsRow
       icon={<Team />}
       label="Segments of Team"
-      description="Only show when tokens from Team group drop to certain fractions of their health"
+      description="Only show when tokens drop to certain fractions of their health"
       action={
         <Input
           className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
@@ -485,7 +485,7 @@ function StrangersSegmentsSettings({
     <SettingsRow
       icon={<Strangers />}
       label="Segments of Strangers"
-      description="Only show when tokens from Strangers group drop to certain fractions of their health"
+      description="Only show when tokens drop to certain fractions of their health"
       action={
         <Input
           className="w-20 bg-mirage-50/30 focus:bg-mirage-50/40 dark:bg-mirage-950/40 dark:focus:bg-mirage-950/80"
