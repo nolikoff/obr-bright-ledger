@@ -27,3 +27,5 @@ export const HiddenHealth = () => (
     />
   </svg>
 );
+
+export default HiddenHealth;
