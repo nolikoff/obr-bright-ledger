@@ -486,7 +486,10 @@ function HealthBarMenu({
       {isOpen && (
         <div
           className="items-center justify-center gap-2 animate-fadeInMenu"
-          style="display: grid; grid-template-columns: repeat(3, 1fr);"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+          }}
         >
           <Button
             variant={"ghost"}
