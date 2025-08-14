@@ -469,7 +469,7 @@ function ShowHealthBarsSettings({
       }
       last={!healthBarsVisible && removeHandler === undefined}
     >
-      <SubSettingsRow
+      <SettingsRow
         icon={<Team />}
         label="Team Segments"
         description="Only show when creatures drop to certain fractions of their health"
@@ -488,8 +488,9 @@ function ShowHealthBarsSettings({
         }
         collapseElement={!healthBarsVisible}
         last={removeHandler === undefined}
-      />
-      <SubSettingsRow
+      >
+      </SettingsRow>
+      <SettingsRow
         icon={<Strangers />}
         label="Strangers Segments"
         description="Only show when creatures drop to certain fractions of their health"
@@ -508,7 +509,8 @@ function ShowHealthBarsSettings({
         }
         collapseElement={!healthBarsVisible}
         last={removeHandler === undefined}
-      />
+      >
+      </SettingsRow>
       {removeHandler === undefined ? (
         <></>
       ) : (
