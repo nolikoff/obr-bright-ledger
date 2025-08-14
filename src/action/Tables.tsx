@@ -222,7 +222,7 @@ function DefaultGMSceneTokensTable({
                   
                     <OwnerSelector token={token} setTokens={setTokens} />
 
-                    <HealthBarMenu token={token} setTokens={setTokens} />
+                    <HealthBarMenu token={token} setTokens={setTokens} playerRole={playerRole}/>
                     
                     <TableCell>
                       <div className="grid min-w-[128px] grid-cols-4 justify-items-stretch gap-2 grid-template-columns-[2fr 1fr 1fr]">
