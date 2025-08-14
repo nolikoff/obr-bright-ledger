@@ -107,7 +107,8 @@ export function createHealthBar(
   statsVisible: boolean,
   origin: { x: number; y: number },
   variant: "full" | "short" = "full",
-  segments = 0,
+  teamSegments = 0,
+  strangersSegments = 0,
 ): Item[] {
   let barHeight: number;
   if (variant === "short") {
@@ -146,7 +147,7 @@ export function createHealthBar(
     .points(createRoundedRectangle(barWidth, barHeight, BAR_CORNER_RADIUS))
     .build();
 
-  const healthFillPortion = getFillPortion(health, maxHealth, segments);
+  const healthFillPortion = getFillPortion(health, maxHealth, teamSegments, strangersSegments);
 
   const fillShape = buildCurve()
     .fillColor("red")
