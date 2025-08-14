@@ -432,6 +432,7 @@ function HealthBarMenu({
   const [selected, setSelected] = useState<
     "hidden health" | "health bar" | "hit points" | null
   >(null);
+  const hideTimeout = useRef<number | null>(null);
 
   const renderMainIcon = () => {
     switch (selected) {
@@ -452,18 +453,26 @@ function HealthBarMenu({
     setSelected(value);
     setIsOpen(false);
   };
+
+  const handleMouseEnter = () => {
+    if (hideTimeout.current) {
+      clearTimeout(hideTimeout.current);
+      hideTimeout.current = null;
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    hideTimeout.current = window.setTimeout(() => {
+      setIsOpen(false);
+    }, 150);
+  };
   
   return (
     <TableCell
       className="py-0"
-      onMouseEnter={() => {
-        console.log("Mouse Enter");
-        setIsOpen(true);
-      }}
-      onMouseLeave={() => {
-        console.log("Mouse Leave");
-        setIsOpen(false);
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <Button
         variant={"ghost"}
@@ -473,7 +482,9 @@ function HealthBarMenu({
       </Button>
 
       {isOpen && (
-        <div>
+        <div
+          className="absolute inset-0 -translate-y-1/2 flex items-center justify-center gap-2 animate-fadeInMenu"
+        >
           <Button
             variant={"ghost"}
             size={"icon"}
