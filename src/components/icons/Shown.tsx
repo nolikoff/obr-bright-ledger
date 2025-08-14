@@ -13,3 +13,5 @@ export const Shown = () => (
     />
   </svg>
 );
+
+export default Shown;
