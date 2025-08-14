@@ -31,9 +31,13 @@ export default async function getGlobalSettings(
   // Ignore scene segments if the room settings is not being overridden
   const sceneSegmentsEnabled = sceneExtensionMetadata?.["show-bars"];
   if (sceneSegmentsEnabled === undefined) {
-    newSettings.segments = readNumberFromObject(
+    newSettings.teamSegments = readNumberFromObject(
       roomExtensionMetadata,
-      "segments",
+      "teamSegments",
+    );
+    newSettings.strangersSegments = readNumberFromObject(
+      roomExtensionMetadata,
+      "strangersSegments",
     );
   }
 
