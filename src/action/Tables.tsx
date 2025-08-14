@@ -222,7 +222,7 @@ function DefaultGMSceneTokensTable({
                   
                     <OwnerSelector token={token} setTokens={setTokens} />
 
-                    <HealthBarMenu token={token} setTokens={setTokens} playerRole={playerRole}/>
+                    <HealthBarMenu token={token} setTokens={setTokens}/>
                     
                     <TableCell>
                       <div className="grid min-w-[128px] grid-cols-4 justify-items-stretch gap-2 grid-template-columns-[2fr 1fr 1fr]">
@@ -428,11 +428,9 @@ function OwnerSelector({
 function HealthBarMenu({
   token,
   setTokens,
-  playerRole,
 }: {
   token: Token;
   setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
-  playerRole: "PLAYER" | "GM";
 }): JSX.Element {
   const [open, setOpen] = useState(false);
   
