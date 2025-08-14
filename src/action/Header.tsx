@@ -16,7 +16,6 @@ import { getPluginId } from "@/getPluginId";
 import LinkButton from "@/settings/LinkButton";
 import { QuestionMark } from "@/components/icons/QuestionMark";
 import { History } from "@/components/icons/History";
-import { Bug } from "@/components/icons/bug";
 
 export default function Header({
   appState,
