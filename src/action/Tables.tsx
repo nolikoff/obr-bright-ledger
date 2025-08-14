@@ -322,6 +322,46 @@ function AccessButton({
   );
 }
 
+function VisibilityButton({
+  token,
+  setTokens,
+}: {
+  token: Token;
+  setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
+}): JSX.Element {
+  return (
+    <TableCell className="py-0">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            name={
+              token.hideStats
+                ? "Make Stats Visible to Players"
+                : "Hide Stats from players"
+            }
+            onClick={() =>
+              handleHiddenUpdate(token.item.id, token.hideStats, setTokens)
+            }
+          >
+            {token.hideStats ? (
+              <div className="text-primary-500 dark:text-primary-dark">
+                <Hidden />
+              </div>
+            ) : (
+              <Shown />
+            )}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="right">
+          {token.hideStats ? "Hidden" : "Shown"}
+        </TooltipContent>
+      </Tooltip>
+    </TableCell>
+  );
+}
+
 function OwnerSelector({
   token,
   setTokens,
