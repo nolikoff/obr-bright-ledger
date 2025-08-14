@@ -605,11 +605,9 @@ function StatInput({
   return (
     <StatStyledInput
       name={name}
-      style={{
-        width: "52px"
-      }}
       inputProps={{
         // className: "w-full",
+        style: "width: 52px",
         value: value,
         onChange: (e) => setValue(e.target.value),
         onBlur: (e) => {
