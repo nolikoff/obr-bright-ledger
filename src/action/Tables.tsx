@@ -428,11 +428,21 @@ function HealthBarMenu({
   token: Token;
   setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
 }): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  
   const [selected, setSelected] = useState<
     "hidden health" | "health bar" | "hit points" | null
   >(null);
-  const hideTimeout = useRef<number | null>(null);
+
+  const handleMouseEnter = () => {
+    setOpen(true);
+    console.log("Enter");
+  };
+
+  const handleMouseLeave = () => {
+    setOpen(false);
+    console.log("Leave");
+  };
 
   const renderMainIcon = () => {
     switch (selected) {
@@ -451,78 +461,71 @@ function HealthBarMenu({
     value: "hidden health" | "health bar" | "hit points"
   ) => {
     setSelected(value);
-    setIsOpen(false);
-  };
-
-  const handleMouseEnter = () => {
-    if (hideTimeout.current) {
-      clearTimeout(hideTimeout.current);
-      hideTimeout.current = null;
-    }
-    console.log("Enter");
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    hideTimeout.current = window.setTimeout(() => {
-      setIsOpen(false);
-    }, 150);
-    console.log("Leave");
+    setOpen(false);
   };
   
   return (
-    <TableCell
-      className="py-0"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <Button
-        variant={"ghost"}
-        size={"icon"}
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger 
+        asChild
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        {renderMainIcon()}
-      </Button>
-
-      {isOpen && (
-        <div
-          className="items-center justify-center gap-2 animate-fadeInMenu"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-          }}
+        <Button
+          variant={"ghost"}
+          size={"icon"}
         >
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            onClick={() => 
-              handleSelect("hidden health")
-            }
+          {renderMainIcon()}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent
+        className="w-72 p-0"
+        align="start"
+        style={{ height: playerRole === "GM" ? 440 : 245 }}
+      >
+        <TableCell
+          className="py-0"
+        >
+          <div
+            className="items-center justify-center gap-2 animate-fadeInMenu"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+            }}
           >
-            <HiddenHealth />
-          </Button>
-          
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            onClick={() => 
-              handleSelect("health bar")
-            }
-          >
-            <HealthBar />
-          </Button>
-          
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            onClick={() => 
-              handleSelect("hit points")
-            }
-          >
-            <HitPoints />
-          </Button>
-        </div>
-      )}
-    </TableCell>
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              onClick={() => 
+                handleSelect("hidden health")
+              }
+            >
+              <HiddenHealth />
+            </Button>
+            
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              onClick={() => 
+                handleSelect("health bar")
+              }
+            >
+              <HealthBar />
+            </Button>
+            
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              onClick={() => 
+                handleSelect("hit points")
+              }
+            >
+              <HitPoints />
+            </Button>
+          </div>
+        </TableCell>
+      </PopoverContent>
+    </Popover>
   );
 }
 
