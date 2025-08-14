@@ -468,6 +468,7 @@ function ShowHealthBarsSettings({
       last={!healthBarsVisible && removeHandler === undefined}
     >
       <SubSettingsRow
+        icon={<Team />}
         label="Team Segments"
         description="Only show when creatures drop to certain fractions of their health"
         action={
@@ -487,6 +488,7 @@ function ShowHealthBarsSettings({
         last={removeHandler === undefined}
       />
       <SubSettingsRow
+        icon={<Strangers />}
         label="Strangers Segments"
         description="Only show when creatures drop to certain fractions of their health"
         action={
