@@ -178,11 +178,7 @@ function DefaultGMSceneTokensTable({
               );
 
               return (
-                <SortableTableRow
-                  key={token.item.id}
-                  id={token.item.id}
-                  onKeyDown={handleKeyDown}
-                >
+                <div>
                   <div
                     style={{
                       borderLeft:
@@ -255,7 +251,7 @@ function DefaultGMSceneTokensTable({
                       </div>
                     </TableCell>
                   </div>
-                </SortableTableRow>
+                </div>
               );
             })}
           </TableBody>
