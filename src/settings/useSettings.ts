@@ -27,6 +27,7 @@ export default function useSettings(saveLocation: SaveLocation) {
   useEffect(() => {
     const handleSettingsMetadataChange = (metadata: Metadata) => {
       const settings = getPluginMetadata(metadata);
+      
       // Offset
       const offset = safeObjectRead(settings, OFFSET_METADATA_ID);
       if (saveLocation === "SCENE" && offset === undefined)
@@ -52,22 +53,20 @@ export default function useSettings(saveLocation: SaveLocation) {
       else setHealthBarsVisible(false);
 
       // Team Segments
-      const teamSegments = readNumberFromObject(settings, TEAM_SEGMENTS_METADATA_ID);
-      console.log("team", typeof teamSegments);
+      const teamSegments = safeObjectRead(settings, TEAM_SEGMENTS_METADATA_ID);
       if (saveLocation === "SCENE" && teamSegments === undefined)
         setTeamSegments(undefined);
       else if (typeof teamSegments === "number" && !Number.isNaN(teamSegments))
         setTeamSegments(teamSegments.toString());
-      else setTeamSegments(undefined);
+      else setTeamSegments("0");
 
       // Strangers Segments
-      const strangersSegments = readNumberFromObject(settings, STRANGERS_SEGMENTS_METADATA_ID);
-      console.log("strangers", typeof strangersSegments);
+      const strangersSegments = safeObjectRead(settings, STRANGERS_SEGMENTS_METADATA_ID);
       if (saveLocation === "SCENE" && strangersSegments === undefined)
         setStrangersSegments(undefined);
       else if (typeof strangersSegments === "number" && !Number.isNaN(strangersSegments))
         setStrangersSegments(strangersSegments.toString());
-      else setStrangersSegments(undefined);
+      else setStrangersSegments("0");
 
       // Name Tags
       const nameTags = safeObjectRead(settings, NAME_TAGS_METADATA_ID);
