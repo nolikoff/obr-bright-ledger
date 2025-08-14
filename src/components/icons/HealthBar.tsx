@@ -13,3 +13,5 @@ export const HealthBar = () => (
     />
   </svg>
 );
+
+export default HealthBar;
