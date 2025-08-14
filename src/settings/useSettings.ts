@@ -42,7 +42,7 @@ export default function useSettings(saveLocation: SaveLocation) {
         setJustification(undefined);
       else if (typeof justification === "boolean")
         setJustification(justification ? "TOP" : "BOTTOM");
-      else setJustification("BOTTOM");
+      else setJustification("TOP");
 
       // Health bars visible
       const healthBarsVisible = safeObjectRead(settings, SHOW_BARS_METADATA_ID);
