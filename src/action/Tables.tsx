@@ -459,11 +459,11 @@ function HealthBarMenu({
         variant={"ghost"}
         size={"icon"}
         onMouseEnter={() =>
-          console.log("Mouse Enter");
+          console.log("Mouse Enter")
           setIsOpen(true)
         }
         onMouseLeave={() =>
-          console.log("Mouse Leave");
+          console.log("Mouse Leave")
           setIsOpen(false)
         }
       >
