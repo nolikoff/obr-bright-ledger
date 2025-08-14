@@ -13,6 +13,8 @@ import { MoveVertical } from "../components/icons/MoveVertical";
 import { AlignVerticalJustifyEnd } from "../components/icons/AlignVerticalJustifyEnd";
 import { AlignVerticalJustifyStart } from "../components/icons/AlignVerticalJustifyStart";
 import { Drama } from "../components/icons/Drama";
+import { Team } from "../components/icons/Team";
+import { Strangers } from "../components/icons/Strangers";
 import { NameTag } from "../components/icons/NameTag";
 import LinkButton from "./LinkButton";
 import { Patreon } from "@/components/icons/Patreon";
