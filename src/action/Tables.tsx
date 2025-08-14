@@ -502,8 +502,14 @@ function HealthBarMenu({
             onClick={() => 
               handleSelect("hidden health")
             }
-          >
-            <HiddenHealth />
+          >  
+            {selected === "hidden health" ? (
+              <div className="text-primary-500 dark:text-primary-dark">
+                <HiddenHealth />
+              </div>
+            ) : (
+              <HiddenHealth />
+            )}
           </Button>
           
           <Button
@@ -513,7 +519,13 @@ function HealthBarMenu({
               handleSelect("health bar")
             }
           >
-            <HealthBar />
+            {selected === "health bar" ? (
+              <div className="text-primary-500 dark:text-primary-dark">
+                <HealthBar />
+              </div>
+            ) : (
+              <HealthBar />
+            )}
           </Button>
           
           <Button
@@ -523,7 +535,13 @@ function HealthBarMenu({
               handleSelect("hit points")
             }
           >
-            <HitPoints />
+            {selected === "hit points" ? (
+              <div className="text-primary-500 dark:text-primary-dark">
+                <HitPoints />
+              </div>
+            ) : (
+              <HitPoints />
+            )}
           </Button>
         </TableCell>
       </PopoverContent>
