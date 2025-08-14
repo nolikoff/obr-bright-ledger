@@ -485,50 +485,46 @@ function HealthBarMenu({
         className="p-0"
         align="center"
         style={{ 
-          height: 22,
-          width: 88,
+          height: 22px,
+          width: 88px,
         }}
       >
         <TableCell
-          className="py-0"
+          className="items-center justify-center gap-2"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+          }}
         >
-          <div
-            className="items-center justify-center gap-2 animate-fadeInMenu"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr",
-            }}
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            onClick={() => 
+              handleSelect("hidden health")
+            }
           >
-            <Button
-              variant={"ghost"}
-              size={"icon"}
-              onClick={() => 
-                handleSelect("hidden health")
-              }
-            >
-              <HiddenHealth />
-            </Button>
-            
-            <Button
-              variant={"ghost"}
-              size={"icon"}
-              onClick={() => 
-                handleSelect("health bar")
-              }
-            >
-              <HealthBar />
-            </Button>
-            
-            <Button
-              variant={"ghost"}
-              size={"icon"}
-              onClick={() => 
-                handleSelect("hit points")
-              }
-            >
-              <HitPoints />
-            </Button>
-          </div>
+            <HiddenHealth />
+          </Button>
+          
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            onClick={() => 
+              handleSelect("health bar")
+            }
+          >
+            <HealthBar />
+          </Button>
+          
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            onClick={() => 
+              handleSelect("hit points")
+            }
+          >
+            <HitPoints />
+          </Button>
         </TableCell>
       </PopoverContent>
     </Popover>
