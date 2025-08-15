@@ -1,8 +1,8 @@
 export const Strangers = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="28"
-    height="28"
+    width="26"
+    height="26"
     viewBox="0 0 32 32"
     fill="none"
     className="lucide lucide-strangers"
