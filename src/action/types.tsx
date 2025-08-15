@@ -8,6 +8,7 @@ export type StampedDiceRoll =
       total: number;
       roll: string;
       playerName: string;
+      playerColor: string;
       visibility: "PUBLIC" | "GM";
     }
   | {
@@ -15,6 +16,7 @@ export type StampedDiceRoll =
       total: number;
       roll: string;
       playerName: string;
+      playerColor: string;
       visibility: "PRIVATE";
       playerId: string;
     };
