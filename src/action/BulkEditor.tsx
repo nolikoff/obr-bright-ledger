@@ -219,13 +219,6 @@ export default function BulkEditor(): JSX.Element {
           playerRole={playerRole}
           playerName={playerName}
         ></Header>
-        
-        <Tabs defaultValue="room" className="w-full py-4">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="team">Team</TabsTrigger>
-            <TabsTrigger value="strangers">Strangers</TabsTrigger>
-          </TabsList>
-        </Tabs>
 
         <ScrollArea className="h-full sm:px-4">
           <div className="flex flex-col items-center justify-start gap-2">
