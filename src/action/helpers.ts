@@ -249,6 +249,7 @@ export function reducer(
               total: roll.total,
               roll: roll.toString(),
               playerName: action.playerName,
+              playerColor: action.playerColor,
               visibility: action.visibility,
               playerId: action.playerId,
             }
@@ -257,6 +258,7 @@ export function reducer(
               total: roll.total,
               roll: roll.toString(),
               playerName: action.playerName,
+              playerColor: action.playerColor,
               visibility: action.visibility,
             },
         ...state.rolls.splice(0, MAX_DICE_ROLLS - 1),
