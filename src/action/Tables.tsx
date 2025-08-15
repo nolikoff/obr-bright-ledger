@@ -438,16 +438,6 @@ function HealthBarMenu({
     "hidden health" | "health bar" | "hit points" | null
   >(null);
 
-  const handleMouseEnter = () => {
-    setOpen(true);
-    console.log("Enter");
-  };
-
-  const handleMouseLeave = () => {
-    setOpen(false);
-    console.log("Leave");
-  };
-
   const renderMainIcon = () => {
     switch (selected) {
       case "hidden health":
@@ -470,10 +460,7 @@ function HealthBarMenu({
   
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger 
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <PopoverTrigger asChild>
         <Button
           variant={"ghost"}
           size={"icon"}
