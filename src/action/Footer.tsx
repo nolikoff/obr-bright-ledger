@@ -311,7 +311,7 @@ export default function Footer({
             className="w-72 p-0"
             align="start"
             style={{ 
-              height: playerRole === "GM" ? 440 : 245,
+              height: playerRole === "GM" ? 472 : 245,
               width: playerRole === "GM" ? 328 : 328, 
             }}
           >
