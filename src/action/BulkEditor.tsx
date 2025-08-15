@@ -225,19 +225,18 @@ export default function BulkEditor(): JSX.Element {
             <TabsTrigger value="team">Team</TabsTrigger>
             <TabsTrigger value="strangers">Strangers</TabsTrigger>
           </TabsList>
-    
-          <TabsContent value="team">
-            <ScrollArea className="h-full sm:px-4">
-              <div className="flex flex-col items-center justify-start gap-2">
-                {getTable()}
-    {/*             {playerRole === "GM" && (
-                  <ChangeShowItemsButton appState={appState} dispatch={dispatch} />
-                )} */}
-              </div>
-              <ScrollBar orientation="horizontal" forceMount />
-            </ScrollArea>
-          </TabsContent>
         </Tabs>
+
+        <ScrollArea className="h-full sm:px-4">
+          <div className="flex flex-col items-center justify-start gap-2">
+            {getTable()}
+{/*             {playerRole === "GM" && (
+              <ChangeShowItemsButton appState={appState} dispatch={dispatch} />
+            )} */}
+          </div>
+          <ScrollBar orientation="horizontal" forceMount />
+        </ScrollArea>
+        
         
         <Footer
           appState={appState}
