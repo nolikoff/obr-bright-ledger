@@ -28,6 +28,8 @@ export default function Header({
   playerName: string;
 }): JSX.Element {
   return (
+    <div>
+
     {playerRole === "GM" ? (
       <div className="flex gap-2 p-4 pb-2 pt-3">
         <Command
@@ -76,16 +78,17 @@ export default function Header({
           </Button>
         </>
       </div>
-      ) : (
-        <div className="flex p-4 pb-2 pt-3">
-          <Command
-            dispatch={dispatch}
-            playerRole={playerRole}
-            playerName={playerName}
-          ></Command>
-          <div class="justify-center h-9">
-          </div>
+    ) : (
+      <div className="flex p-4 pb-2 pt-3">
+        <Command
+          dispatch={dispatch}
+          playerRole={playerRole}
+          playerName={playerName}
+        ></Command>
+        <div class="justify-center h-9">
         </div>
-      )}
+      </div>
+    )}
+    </div>
   );
 }
