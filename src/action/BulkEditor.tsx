@@ -42,6 +42,7 @@ export default function BulkEditor(): JSX.Element {
   const [playerSelection, setPlayerSelection] = useState<string[]>([]);
   const [playerRole, setPlayerRole] = useState<"PLAYER" | "GM">("PLAYER");
   const [playerName, setPlayerName] = useState("");
+  const [playerColor, setPlayerColor] = useState("");
   const [sceneReady, setSceneReady] = useState(false);
 
   useEffect(() => {
@@ -154,13 +155,18 @@ export default function BulkEditor(): JSX.Element {
     const updatePlayerName = (name: string) => {
       setPlayerName(name);
     };
+    const updatePlayerColor = (color: string) => {
+      setPlayerColor(color);
+    };
     OBR.player.getSelection().then(updateSelection);
     OBR.player.getRole().then(updatePlayerRole);
     OBR.player.getName().then(updatePlayerName);
+    OBR.player.getColor().then(updatePlayerColor);
     return OBR.player.onChange((player) => {
       updateSelection(player.selection);
       updatePlayerRole(player.role);
       updatePlayerName(player.name);
+      updatePlayerColor(player.color);
     });
   }, []);
 
@@ -237,6 +243,7 @@ export default function BulkEditor(): JSX.Element {
           tokens={selectedTokens}
           playerRole={playerRole}
           playerName={playerName}
+          playerColor={playerColor}
         ></Footer>
       </div>
     </div>
