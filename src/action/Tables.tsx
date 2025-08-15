@@ -208,8 +208,10 @@ function DefaultGMSceneTokensTable({
                 >
                   <div
                     style={{
+                      marginTop: "8px",
+                      marginBottom: "8px",
                       borderLeft:
-                        "thick solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent")
+                        "4px solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent")
                     }} 
                   >
                     <TokenTableCell
