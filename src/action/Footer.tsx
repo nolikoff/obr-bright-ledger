@@ -129,20 +129,19 @@ export default function Footer({
               <div className="float-end pr-0.5">Private</div>
             )}
             <p className="flex flex-wrap items-center gap-x-1">
-              {roll.playerRole === "GM" && (
-                <span className="text-mirage-500 dark:text-mirage-400">
-                  {`${roll.playerName}`}
-                </span>
-              )}
-              {roll.playerRole === "PLAYER" && (
-                <span
-                  style={{
-                    color: roll.playerColor,
-                  }}
-                >
-                  {`${roll.playerName}`}
-                </span>
-              )}
+              <span className="text-mirage-500 dark:text-mirage-400">
+                {`${roll.playerName}`}
+              </span>
+              <span className="text-mirage-500 dark:text-mirage-400">
+                {` o3o `}
+              </span>
+              <span
+                style={{
+                  color: roll.playerColor,
+                }}
+              >
+                {`${roll.playerName}`}
+              </span>
               <span className="text-mirage-500 dark:text-mirage-400">
                 {` rolled `}
               </span>
