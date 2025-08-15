@@ -395,7 +395,9 @@ function VisibilityButton({
   setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
 }): JSX.Element {
   return (
-    <TableCell className="py-0">
+    <TableCell 
+      className="py-0 h-8"
+    >
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
@@ -439,10 +441,16 @@ function GroupButton({
   setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
 }): JSX.Element {
   return (
-    <TableCell className="py-0">
+    <TableCell 
+      className="py-0 h-8"
+    >
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
+            style={{
+              width: "32px",
+              height: "32px",
+            }}
             variant={"ghost"}
             size={"icon"}
             name={
@@ -456,16 +464,15 @@ function GroupButton({
           >
             {token.hideStats ? (
               <div className="text-primary-500 dark:text-primary-dark">
-                <Team style={{
-                    width: "28px",
-                  }}
+                <Team 
+                  width="28px"
+                  height="28px"
                 />
               </div>
             ) : (
               <Strangers
-                style={{
-                  width: "28px",
-                }}
+                width="28px"
+                height="28px"
               />
             )}
           </Button>
