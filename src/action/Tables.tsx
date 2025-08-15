@@ -226,7 +226,11 @@ function DefaultGMSceneTokensTable({
                       ></div>
                     </TableCell>
 
-                    <TableCell>
+                    <TableCell 
+                      style={{
+                        padding: "0px 0px 0px 0px",
+                      }}
+                    >
                       <div
                         className="grid gap-2 align-middle"
                       >
@@ -237,11 +241,16 @@ function DefaultGMSceneTokensTable({
                           }}
                         >
                           <TokenTableCell
+                            style={{
+                              padding: "0px 0px 0px 0px",
+                            }}
                             token={token}
                             faded={!included && appState.operation !== "none"}
                             playerSelection={playerSelection}
                           />
-                          <TableCell></TableCell>
+                          <TableCell
+                            className="p-1"
+                          ></TableCell>
                           <VisibilityButton token={token} setTokens={setTokens} />
                         </div>
                         <OwnerSelector token={token} setTokens={setTokens} />
