@@ -605,8 +605,8 @@ function HealthBarMenu({
           align="center"
           sideOffset={-36}
           style={{ 
-            height: "40px",
-            width: "122px",
+            height: "42px",
+            width: "114px",
           }}
         >
           <TableCell
