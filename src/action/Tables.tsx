@@ -241,9 +241,6 @@ function DefaultGMSceneTokensTable({
                           }}
                         >
                           <TokenTableCell
-                            style={{
-                              padding: "0px 0px 0px 0px",
-                            }}
                             token={token}
                             faded={!included && appState.operation !== "none"}
                             playerSelection={playerSelection}
@@ -449,7 +446,11 @@ function OwnerSelector({
   }, []);
   
   return (
-    <TableCell>
+    <TableCell 
+      style={{
+        padding: "0px 0px 0px 0px",
+      }}
+    >
       <Select
         className="w-[128px]"
         value={token.item.createdUserId}
@@ -511,7 +512,8 @@ function HealthBarMenu({
   };
   
   return (
-    <TableCell 
+    <TableCell
+      className="align-top"
       style={{
         padding: "0px 0px 0px 8px",
       }}
@@ -611,7 +613,11 @@ function TokenTableCell({
     ></img>
   );
   return (
-    <TableCell>
+    <TableCell 
+      style={{
+        padding: "0px 0px 0px 0px",
+      }}
+    >
       <Tooltip>
         <TooltipTrigger asChild>
           <div className="flex items-center">
