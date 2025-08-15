@@ -455,81 +455,83 @@ function HealthBarMenu({
   };
   
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant={"ghost"}
-          size={"icon"}
-        >
-          {renderMainIcon()}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent
-        className="p-0"
-        align="center"
-        sideOffset={-50}
-        style={{ 
-          height: "46px",
-          width: "124px",
-        }}
-      >
-        <TableCell
-          className="items-center justify-center gap-1 p-1"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
+    <TableCell className="py-0">
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+          >
+            {renderMainIcon()}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="p-0"
+          align="center"
+          sideOffset={-50}
+          style={{ 
+            height: "46px",
+            width: "124px",
           }}
         >
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            onClick={() => 
-              handleSelect("hidden health")
-            }
-          >  
-            {selected === "hidden health" ? (
-              <div className="text-primary-500 dark:text-primary-dark">
+          <TableCell
+            className="items-center justify-center gap-1 p-1"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+            }}
+          >
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              onClick={() => 
+                handleSelect("hidden health")
+              }
+            >  
+              {selected === "hidden health" ? (
+                <div className="text-primary-500 dark:text-primary-dark">
+                  <HiddenHealth />
+                </div>
+              ) : (
                 <HiddenHealth />
-              </div>
-            ) : (
-              <HiddenHealth />
-            )}
-          </Button>
-          
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            onClick={() => 
-              handleSelect("health bar")
-            }
-          >
-            {selected === "health bar" ? (
-              <div className="text-primary-500 dark:text-primary-dark">
+              )}
+            </Button>
+            
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              onClick={() => 
+                handleSelect("health bar")
+              }
+            >
+              {selected === "health bar" ? (
+                <div className="text-primary-500 dark:text-primary-dark">
+                  <HealthBar />
+                </div>
+              ) : (
                 <HealthBar />
-              </div>
-            ) : (
-              <HealthBar />
-            )}
-          </Button>
-          
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            onClick={() => 
-              handleSelect("hit points")
-            }
-          >
-            {selected === "hit points" ? (
-              <div className="text-primary-500 dark:text-primary-dark">
+              )}
+            </Button>
+            
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              onClick={() => 
+                handleSelect("hit points")
+              }
+            >
+              {selected === "hit points" ? (
+                <div className="text-primary-500 dark:text-primary-dark">
+                  <HitPoints />
+                </div>
+              ) : (
                 <HitPoints />
-              </div>
-            ) : (
-              <HitPoints />
-            )}
-          </Button>
-        </TableCell>
-      </PopoverContent>
-    </Popover>
+              )}
+            </Button>
+          </TableCell>
+        </PopoverContent>
+      </Popover>
+    </TableCell>
   );
 }
 
