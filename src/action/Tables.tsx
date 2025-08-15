@@ -468,8 +468,8 @@ function HealthBarMenu({
         className="p-0"
         align="center"
         style={{ 
-          height: "52px",
-          width: "122px",
+          height: "44px",
+          width: "120px",
         }}
       >
         <TableCell
