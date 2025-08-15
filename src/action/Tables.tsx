@@ -128,6 +128,17 @@ export function SceneTokensTable({
           handleDragEnd={handleDragEnd}
         />
       )}
+      {playerRole === "PLAYER" && (
+        <DefaultPlayerSceneTokensTable
+          appState={appState}
+          dispatch={dispatch}
+          tokens={tokens}
+          setTokens={setTokens}
+          playerRole={playerRole}
+          playerSelection={playerSelection}
+          handleDragEnd={handleDragEnd}
+        />
+      )}
     </div>
   );
 }
@@ -268,6 +279,176 @@ function DefaultGMSceneTokensTable({
                     <TableCell 
                       style={{
                         padding: "0px 0px 0px 0px",
+                      }}
+                    >
+                      <div 
+                        className="grid justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]"
+                      >
+                        <div
+                          className="col-span-2 flex items-center"
+                        >
+                          <StatInput
+                            parentValue={token.health}
+                            name={"health"}
+                            updateHandler={(target) =>
+                              handleStatUpdate(
+                                token.item.id,
+                                target,
+                                token.health,
+                                setTokens,
+                              )
+                            }
+                          />
+                          <div
+                            style={{
+                              textAlign: "center",
+                              width: "8px",
+                            }}
+                          >
+                            {"/"}
+                          </div>
+                          <StatInput
+                            parentValue={token.maxHealth}
+                            name={"maxHealth"}
+                            updateHandler={(target) =>
+                              handleStatUpdate(
+                                token.item.id,
+                                target,
+                                token.maxHealth,
+                                setTokens,
+                              )
+                            }
+                          />
+                        </div>
+                        <StatInput
+                          parentValue={token.tempHealth}
+                          name={"tempHealth"}
+                          updateHandler={(target) =>
+                            handleStatUpdate(
+                              token.item.id,
+                              target,
+                              token.tempHealth,
+                              setTokens,
+                            )
+                          }
+                        />
+                        <StatInput
+                          parentValue={token.armorClass}
+                          name={"armorClass"}
+                          updateHandler={(target) =>
+                            handleStatUpdate(
+                              token.item.id,
+                              target,
+                              token.armorClass,
+                              setTokens,
+                            )
+                          }
+                        />
+                      </div>
+                    </TableCell>
+                  </div>
+                </SortableTableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </SortableContext>
+    </DndContext>
+  );
+}
+
+function DefaultPlayerSceneTokensTable({
+  appState,
+  dispatch,
+  tokens,
+  setTokens,
+  playerRole,
+  playerSelection,
+  handleDragEnd,
+}: {
+  appState: BulkEditorState;
+  dispatch: React.Dispatch<Action>;
+  tokens: Token[];
+  setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
+  playerRole: "PLAYER" | "GM";
+  playerSelection: string[];
+  handleDragEnd: (event: DragEndEvent) => void;
+}): JSX.Element {
+  const sensors = useSensors(
+    useSensor(SmartMouseSensor, {
+      activationConstraint: { distance: { y: 10 } },
+    }),
+  );
+
+  const [players, setPlayers] = useState<Array<Player>>([]);
+  
+  useEffect(() => {
+      const initPlayerList = async () => {
+          setPlayers(await OBR.party.getPlayers());
+      };
+
+      initPlayerList();
+      return OBR.party.onChange((players) => {
+          setPlayers(players);
+      });
+  }, []);
+
+  return (
+    <DndContext
+      sensors={sensors}
+      modifiers={[restrictToFirstScrollableAncestor]}
+      collisionDetection={closestCenter}
+      onDragEnd={playerRole === "GM" ? handleDragEnd : () => {}}
+    >
+      <SortableContext
+        items={playerRole === "GM" ? tokens.map((token) => token.item.id) : []}
+        strategy={verticalListSortingStrategy}
+      >
+        <Table tabIndex={-1}>
+          <TableBody>
+            {tokens.map((token) => {
+              const included = getIncluded(
+                token.item.id,
+                appState.includedItems,
+              );
+
+              const handleKeyDown = (
+                event: React.KeyboardEvent<HTMLTableRowElement>,
+              ) => {
+                switch (event.code) {
+                  case "ArrowLeft":
+                    previousDamageOption();
+                    break;
+                  case "ArrowRight":
+                    nextDamageOption();
+                    break;
+                  case "KeyR":
+                    resetDamageOption();
+                    break;
+                }
+              };
+
+              return (
+                <SortableTableRow
+                  key={token.item.id}
+                  id={token.item.id}
+                  onKeyDown={handleKeyDown}
+                >
+                  <div
+                    style={{
+                      marginTop: "10px",
+                      marginBottom: "10px",
+                    }} 
+                  >
+                    <TokenTableCell
+                      token={token}
+                      faded={!included && appState.operation !== "none"}
+                      playerSelection={playerSelection}
+                    />
+
+                    <TableCell 
+                      style={{
+                        padding: "0px 0px 0px 8px",
                       }}
                     >
                       <div 
