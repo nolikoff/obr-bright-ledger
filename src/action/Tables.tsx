@@ -252,6 +252,7 @@ function DefaultGMSceneTokensTable({
                             className="p-1"
                           ></TableCell>
                           <VisibilityButton token={token} setTokens={setTokens} />
+                          <GroupButton token={token} setTokens={setTokens} />
                         </div>
                         <OwnerSelector token={token} setTokens={setTokens} />
                       </div>
