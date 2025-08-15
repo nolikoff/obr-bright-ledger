@@ -603,10 +603,10 @@ function HealthBarMenu({
         <PopoverContent
           className="p-0"
           align="center"
-          sideOffset={-41}
+          sideOffset={-36}
           style={{ 
-            height: "46px",
-            width: "124px",
+            height: "40px",
+            width: "122px",
           }}
         >
           <TableCell
