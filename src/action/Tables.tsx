@@ -212,7 +212,11 @@ function DefaultGMSceneTokensTable({
                       marginBottom: "8px",
                     }} 
                   >
-                    <TableCell>
+                    <TableCell
+                      style={{
+                        padding: "0px",
+                      }}
+                    >
                       <div 
                         style={{
                           height: "72px",
@@ -244,11 +248,18 @@ function DefaultGMSceneTokensTable({
                       </div>
                     </TableCell>
                           
-                    <TableCell></TableCell>
+                    <TableCell 
+                      style={{
+                        padding: "0px 8px 0px 8px",
+                      }}
+                    ></TableCell>
 
                     <HealthBarMenu token={token} setTokens={setTokens} />
 
-                    <TableCell>
+                    <TableCell 
+                      style={{
+                        padding: "0px 0px 0px 8px",
+                      }}
                       <div 
                         className="grid justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]"
                       >
@@ -490,7 +501,11 @@ function HealthBarMenu({
   };
   
   return (
-    <TableCell className="py-0">
+    <TableCell 
+      style={{
+        padding: "0px 0px 0px 8px",
+      }}
+    >
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
