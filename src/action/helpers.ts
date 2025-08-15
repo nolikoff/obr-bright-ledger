@@ -204,6 +204,7 @@ function isDiceRollArray(rolls: unknown): rolls is StampedDiceRoll[] {
     if (typeof roll?.total !== "number") return false;
     if (typeof roll?.roll !== "string") return false;
     if (typeof roll?.playerName !== "string") return false;
+    if (typeof roll?.playerColor !== "string") return false;
     if (typeof roll?.visibility !== "string") return false;
     if (roll.visibility === "PRIVATE") {
       if (typeof roll?.userId !== "string") return false;
