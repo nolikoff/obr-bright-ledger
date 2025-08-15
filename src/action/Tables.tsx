@@ -244,7 +244,7 @@ function DefaultGMSceneTokensTable({
                           <div
                             style={{
                               textAlign: "center",
-                              width: "8px"
+                              width: "8px",
                             }}
                           >
                             {"/"}
