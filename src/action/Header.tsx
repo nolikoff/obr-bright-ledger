@@ -28,13 +28,13 @@ export default function Header({
   playerName: string;
 }): JSX.Element {
   return (
-    <div className="flex gap-2 p-4 pb-2 pt-3">
-      <Command
-        dispatch={dispatch}
-        playerRole={playerRole}
-        playerName={playerName}
-      ></Command>
-      {playerRole === "GM" ? (
+    {playerRole === "GM" ? (
+      <div className="flex gap-2 p-4 pb-2 pt-3">
+        <Command
+          dispatch={dispatch}
+          playerRole={playerRole}
+          playerName={playerName}
+        ></Command>
         <>
           <Select
             value={appState.operation}
@@ -75,10 +75,17 @@ export default function Header({
             <GearIcon className="size-5" />
           </Button>
         </>
+      </div>
       ) : (
-        <div class="justify-center h-9">
+        <div className="flex p-4 pb-2 pt-3">
+          <Command
+            dispatch={dispatch}
+            playerRole={playerRole}
+            playerName={playerName}
+          ></Command>
+          <div class="justify-center h-9">
+          </div>
         </div>
       )}
-    </div>
   );
 }
