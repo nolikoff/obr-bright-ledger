@@ -452,10 +452,10 @@ function DefaultPlayerSceneTokensTable({
                       }}
                     >
                       <div 
-                        className="grid justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]"
+                        className="flex gap-2"
                       >
                         <div
-                          className="col-span-2 flex items-center"
+                          className="flex items-center justify-between"
                         >
                           <StatInput
                             parentValue={token.health}
