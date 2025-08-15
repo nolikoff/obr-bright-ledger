@@ -267,7 +267,7 @@ function DefaultGMSceneTokensTable({
 
                     <TableCell 
                       style={{
-                        padding: "0px 0px 0px 8px",
+                        padding: "0px 0px 0px 0px",
                       }}
                     >
                       <div 
@@ -549,7 +549,7 @@ function HealthBarMenu({
     <TableCell
       className="align-top"
       style={{
-        padding: "0px 0px 0px 8px",
+        padding: "0px 8px 0px 8px",
       }}
     >
       <Popover open={open} onOpenChange={setOpen}>
