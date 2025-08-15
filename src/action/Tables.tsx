@@ -227,8 +227,8 @@ function DefaultGMSceneTokensTable({
                     <HealthBarMenu token={token} setTokens={setTokens}/>
                     
                     <TableCell>
-                      <div className="grid min-w-[128px] grid-cols-4 justify-items-stretch gap-2 grid-template-columns-[2fr 1fr 1fr]">
-                        <div className="col-span-2 flex items-center justify-between gap-1">
+                      <div className="grid grid-cols-2 justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]">
+                        <div className="col-span-2 flex items-center">
                           <StatInput
                             parentValue={token.health}
                             name={"health"}
@@ -241,7 +241,14 @@ function DefaultGMSceneTokensTable({
                               )
                             }
                           />
-                          <div>{"/"}</div>
+                          <div
+                            style={{
+                              textAlign: "center",
+                              width: "8px"
+                            }}
+                          >
+                            {"/"}
+                          </div>
                           <StatInput
                             parentValue={token.maxHealth}
                             name={"maxHealth"}
