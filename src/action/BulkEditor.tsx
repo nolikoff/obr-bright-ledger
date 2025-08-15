@@ -224,6 +224,7 @@ export default function BulkEditor(): JSX.Element {
           dispatch={dispatch}
           playerRole={playerRole}
           playerName={playerName}
+          playerColor={playerColor}
         ></Header>
 
         <ScrollArea className="h-full sm:px-4">
