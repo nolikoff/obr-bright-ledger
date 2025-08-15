@@ -53,6 +53,7 @@ export type Action =
       type: "add-roll";
       diceExpression: string;
       playerName: string;
+      playerColor: string;
       visibility: "PUBLIC" | "GM";
       dispatch: React.Dispatch<Action>;
     }
@@ -60,6 +61,7 @@ export type Action =
       type: "add-roll";
       diceExpression: string;
       playerName: string;
+      playerColor: string;
       visibility: "PRIVATE";
       playerId: string;
       dispatch: React.Dispatch<Action>;
