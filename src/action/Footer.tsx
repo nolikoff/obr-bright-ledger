@@ -312,7 +312,7 @@ export default function Footer({
             align="start"
             style={{ 
               height: playerRole === "GM" ? 472 : 245,
-              width: playerRole === "GM" ? 328 : 328, 
+              width: playerRole === "GM" ? 332 : 332, 
             }}
           >
             <ScrollArea className="h-full px-4">
