@@ -214,17 +214,19 @@ function DefaultGMSceneTokensTable({
                         "4px solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent")
                     }} 
                   >
-                    <TokenTableCell
-                      token={token}
-                      faded={!included && appState.operation !== "none"}
-                      playerSelection={playerSelection}
-                    />
-                    
-                    <VisibilityButton token={token} setTokens={setTokens} />
-                  
-                    <OwnerSelector token={token} setTokens={setTokens} />
+                    <div className="grid grid-cols-2 justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]">
+                      <TokenTableCell
+                        token={token}
+                        faded={!included && appState.operation !== "none"}
+                        playerSelection={playerSelection}
+                      />
 
-                    <HealthBarMenu token={token} setTokens={setTokens}/>
+                      <VisibilityButton token={token} setTokens={setTokens} />
+                      
+                      <OwnerSelector token={token} setTokens={setTokens} />
+                    </div>
+
+                    <HealthBarMenu token={token} setTokens={setTokens} />
                     
                     <TableCell>
                       <div className="grid grid-cols-2 justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]">
