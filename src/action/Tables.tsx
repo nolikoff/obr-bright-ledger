@@ -217,7 +217,7 @@ function DefaultGMSceneTokensTable({
                   >
                     <TableCell
                       style={{
-                        padding: "0px",
+                        padding: "0px 0px 0px 0px",
                       }}
                     >
                       <div 
@@ -346,47 +346,6 @@ function DefaultGMSceneTokensTable({
   );
 }
 
-
-function AccessButton({
-  token,
-  setTokens,
-}: {
-  token: Token;
-  setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
-}): JSX.Element {
-  return (
-    <TableCell className="py-0">
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            name={
-              token.hideStats
-                ? "Make Stats Visible to Players"
-                : "Hide Stats from players"
-            }
-            onClick={() =>
-              handleHiddenUpdate(token.item.id, token.hideStats, setTokens)
-            }
-          >
-            {token.hideStats ? (
-              <div className="text-primary-500 dark:text-primary-dark">
-                <Hidden />
-              </div>
-            ) : (
-              <Shown />
-            )}
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent side="right">
-          {token.hideStats ? "Dungeon Master Only" : "Player Editable"}
-        </TooltipContent>
-      </Tooltip>
-    </TableCell>
-  );
-}
-
 function VisibilityButton({
   token,
   setTokens,
@@ -396,7 +355,10 @@ function VisibilityButton({
 }): JSX.Element {
   return (
     <TableCell 
-      className="py-0 h-8"
+      style={{
+        height: "32px",
+        padding: "0px 8px 0px 8px",
+      }}
     >
       <Tooltip>
         <TooltipTrigger asChild>
@@ -442,7 +404,10 @@ function GroupButton({
 }): JSX.Element {
   return (
     <TableCell 
-      className="py-0 h-8"
+      style={{
+        height: "32px",
+        padding: "0px 0px 0px 8px",
+      }}
     >
       <Tooltip>
         <TooltipTrigger asChild>
