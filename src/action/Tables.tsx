@@ -434,9 +434,7 @@ function HealthBarMenu({
 }): JSX.Element {
   const [open, setOpen] = useState(false);
   
-  const [selected, setSelected] = useState<
-    "hidden health" | "health bar" | "hit points" | null
-  >(null);
+  const [selected, setSelected] = useState<"hidden health" | "health bar" | "hit points">("hidden health");
 
   const renderMainIcon = () => {
     switch (selected) {
@@ -446,8 +444,6 @@ function HealthBarMenu({
         return <HealthBar />;
       case "hit points":
         return <HitPoints />;
-      default:
-        return <HiddenHealth />;
     }
   };
 
@@ -473,7 +469,7 @@ function HealthBarMenu({
         align="center"
         style={{ 
           height: "52px",
-          width: "124px",
+          width: "122px",
         }}
       >
         <TableCell
