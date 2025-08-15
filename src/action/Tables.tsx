@@ -218,6 +218,7 @@ function DefaultGMSceneTokensTable({
                           height: "72px",
                           paddingRight: "16px",
                           borderLeft: "4px solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent"),
+                        }}
                       ></div>
                     </TableCell>
 
