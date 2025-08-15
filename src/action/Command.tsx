@@ -99,10 +99,12 @@ export default function Command({
   dispatch,
   playerRole,
   playerName,
+  playerColor,
 }: {
   dispatch: React.Dispatch<Action>;
   playerRole: "PLAYER" | "GM";
   playerName: string;
+  playerColor: string;
 }): JSX.Element {
   const [inputContent, setInputContent] = useState("");
   const [targetIndex, setTargetIndex] = useState(0);
@@ -135,6 +137,7 @@ export default function Command({
             type: "add-roll",
             diceExpression,
             playerName,
+            playerColor,
             visibility,
             playerId: OBR.player.id,
             dispatch,
@@ -145,6 +148,7 @@ export default function Command({
             diceExpression,
             visibility,
             playerName,
+            playerColor,
             dispatch,
           });
       };
