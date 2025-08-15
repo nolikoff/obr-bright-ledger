@@ -310,7 +310,10 @@ export default function Footer({
           <PopoverContent
             className="w-72 p-0"
             align="start"
-            style={{ height: playerRole === "GM" ? 440 : 245 }}
+            style={{ 
+              height: playerRole === "GM" ? 440 : 245,
+              width: playerRole === "GM" ? 328 : 328, 
+            }}
           >
             <ScrollArea className="h-full px-4">
               <div className="flex flex-col gap-2 py-3">
