@@ -467,7 +467,7 @@ function HealthBarMenu({
       <PopoverContent
         className="p-0"
         align="center"
-        sideOffset={-100}
+        sideOffset={-50}
         style={{ 
           height: "46px",
           width: "124px",
