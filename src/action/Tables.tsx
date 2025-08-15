@@ -464,15 +464,19 @@ function GroupButton({
           >
             {token.hideStats ? (
               <div className="text-primary-500 dark:text-primary-dark">
-                <Team 
-                  width="28px"
-                  height="28px"
+                <Team
+                  style={{ 
+                    height: 28,
+                    width: 28,
+                  }}
                 />
               </div>
             ) : (
               <Strangers
-                width="28px"
-                height="28px"
+                style={{ 
+                  height: 28, 
+                  width: 28,
+                }}
               />
             )}
           </Button>
