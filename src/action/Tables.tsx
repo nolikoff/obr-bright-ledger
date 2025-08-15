@@ -248,10 +248,9 @@ function DefaultGMSceneTokensTable({
                             faded={!included && appState.operation !== "none"}
                             playerSelection={playerSelection}
                           />
-                          <TableCell
-                            className="p-1"
-                          ></TableCell>
+                          
                           <VisibilityButton token={token} setTokens={setTokens} />
+                          
                           <GroupButton token={token} setTokens={setTokens} />
                         </div>
                         <OwnerSelector token={token} setTokens={setTokens} />
@@ -400,6 +399,10 @@ function VisibilityButton({
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
+            style={{
+              width: "32px",
+              height: "32px",
+            }}
             variant={"ghost"}
             size={"icon"}
             name={
@@ -663,14 +666,14 @@ function TokenTableCell({
 }): JSX.Element {
   const image = (
     <img
-      className="min-h-8 min-w-8"
+      className="h-8 w-8"
       src={(token.item as Image).image.url}
     ></img>
   );
   return (
     <TableCell 
       style={{
-        padding: "0px 0px 0px 0px",
+        padding: "0px 8px 0px 0px",
       }}
     >
       <Tooltip>
@@ -678,7 +681,7 @@ function TokenTableCell({
           <div className="flex items-center">
             <button
               className={cn(
-                "size-8 font-medium outline-none sm:size-8",
+                "size-8 font-medium outline-none",
                 {
                   "opacity-60": faded,
                 },
