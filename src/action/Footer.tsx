@@ -30,12 +30,14 @@ export default function Footer({
   tokens,
   playerRole,
   playerName,
+  playerColor,
 }: {
   appState: BulkEditorState;
   dispatch: React.Dispatch<Action>;
   tokens: Token[];
   playerRole: "PLAYER" | "GM";
   playerName: string;
+  playerColor: string;
 }): JSX.Element {
   const [diceMenuOpen, setDiceMenuOpen] = useState(false);
 
@@ -127,8 +129,22 @@ export default function Footer({
               <div className="float-end pr-0.5">Private</div>
             )}
             <p className="flex flex-wrap items-center gap-x-1">
+              {roll.playerRole === "GM" && (
+                <span className="text-mirage-500 dark:text-mirage-400">
+                  {`${roll.playerName}`}
+                </span>
+              )}
+              {roll.playerRole === "PLAYER" && (
+                <span
+                  style={{
+                    color: roll.playerColor,
+                  }}
+                >
+                  {`${roll.playerName}`}
+                </span>
+              )}
               <span className="text-mirage-500 dark:text-mirage-400">
-                {titleString}
+                {` rolled `}
               </span>
               <span>{`${diceExpression}`}</span>
             </p>
@@ -161,6 +177,7 @@ export default function Footer({
                             type: "add-roll",
                             diceExpression: diceExpression,
                             playerName: playerName,
+                            playerColor: playerColor,
                             visibility: roll.visibility,
                             dispatch: dispatch,
                             playerId: roll.playerId,
@@ -169,6 +186,7 @@ export default function Footer({
                             type: "add-roll",
                             diceExpression: diceExpression,
                             playerName: playerName,
+                            playerColor: playerColor,
                             visibility: roll.visibility,
                             dispatch: dispatch,
                           },
