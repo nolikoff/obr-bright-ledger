@@ -590,6 +590,10 @@ function HealthBarMenu({
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
+            style={{
+              width: "32px",
+              height: "32px",
+            }}
             variant={"ghost"}
             size={"icon"}
           >
@@ -613,6 +617,10 @@ function HealthBarMenu({
             }}
           >
             <Button
+              style={{
+                width: "32px",
+                height: "32px",
+              }}
               variant={"ghost"}
               size={"icon"}
               onClick={() => 
@@ -629,6 +637,10 @@ function HealthBarMenu({
             </Button>
             
             <Button
+              style={{
+                width: "32px",
+                height: "32px",
+              }}
               variant={"ghost"}
               size={"icon"}
               onClick={() => 
@@ -645,6 +657,10 @@ function HealthBarMenu({
             </Button>
             
             <Button
+              style={{
+                width: "32px",
+                height: "32px",
+              }}
               variant={"ghost"}
               size={"icon"}
               onClick={() => 
