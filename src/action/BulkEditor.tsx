@@ -220,13 +220,8 @@ export default function BulkEditor(): JSX.Element {
           playerName={playerName}
         ></Header>
         
-        <Tabs defaultValue="room">
-          <TabsList
-            className="grid w-full grid-cols-2"
-            style={{
-              margin: "0px 16px 0px 16px",
-            }}
-          >
+        <Tabs defaultValue="room" className="w-full py-4">
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="team">Team</TabsTrigger>
             <TabsTrigger value="strangers">Strangers</TabsTrigger>
           </TabsList>
