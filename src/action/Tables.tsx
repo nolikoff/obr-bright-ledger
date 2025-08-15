@@ -228,42 +228,42 @@ function DefaultGMSceneTokensTable({
 
                     <HealthBarMenu token={token} setTokens={setTokens} />
                     
-                    <TableCell>
-                      <div className="grid grid-cols-2 justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]">
-                        <div className="col-span-2 flex items-center">
-                          <StatInput
-                            parentValue={token.health}
-                            name={"health"}
-                            updateHandler={(target) =>
-                              handleStatUpdate(
-                                token.item.id,
-                                target,
-                                token.health,
-                                setTokens,
-                              )
-                            }
-                          />
-                          <div
-                            style={{
-                              textAlign: "center",
-                              width: "8px",
-                            }}
-                          >
-                            {"/"}
-                          </div>
-                          <StatInput
-                            parentValue={token.maxHealth}
-                            name={"maxHealth"}
-                            updateHandler={(target) =>
-                              handleStatUpdate(
-                                token.item.id,
-                                target,
-                                token.maxHealth,
-                                setTokens,
-                              )
-                            }
-                          />
+                    <div className="grid grid-cols-2 justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]">
+                      <TableCell>
+                        <StatInput
+                          parentValue={token.health}
+                          name={"health"}
+                          updateHandler={(target) =>
+                            handleStatUpdate(
+                              token.item.id,
+                              target,
+                              token.health,
+                              setTokens,
+                            )
+                          }
+                        />
+                        <div
+                          style={{
+                            textAlign: "center",
+                            width: "8px",
+                          }}
+                        >
+                          {"/"}
                         </div>
+                        <StatInput
+                          parentValue={token.maxHealth}
+                          name={"maxHealth"}
+                          updateHandler={(target) =>
+                            handleStatUpdate(
+                              token.item.id,
+                              target,
+                              token.maxHealth,
+                              setTokens,
+                            )
+                          }
+                        />
+                      </TableCell>
+                      <TableCell>
                         <StatInput
                           parentValue={token.tempHealth}
                           name={"tempHealth"}
@@ -276,6 +276,8 @@ function DefaultGMSceneTokensTable({
                             )
                           }
                         />
+                      </TableCell>
+                      <TableCell>
                         <StatInput
                           parentValue={token.armorClass}
                           name={"armorClass"}
@@ -288,8 +290,8 @@ function DefaultGMSceneTokensTable({
                             )
                           }
                         />
-                      </div>
-                    </TableCell>
+                      </TableCell>
+                    </div>
                   </div>
                 </SortableTableRow>
               );
