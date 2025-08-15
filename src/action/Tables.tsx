@@ -260,6 +260,7 @@ function DefaultGMSceneTokensTable({
                       style={{
                         padding: "0px 0px 0px 8px",
                       }}
+                    >
                       <div 
                         className="grid justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]"
                       >
