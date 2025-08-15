@@ -211,8 +211,8 @@ function DefaultGMSceneTokensTable({
                 >
                   <div
                     style={{
-                      marginTop: "8px",
-                      marginBottom: "8px",
+                      marginTop: "10px",
+                      marginBottom: "10px",
                     }} 
                   >
                     <TableCell
