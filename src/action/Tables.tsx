@@ -167,189 +167,180 @@ function DefaultGMSceneTokensTable({
   }, []);
 
   return (
-    <Tabs defaultValue="room" className="w-full py-4">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="team">Team</TabsTrigger>
-        <TabsTrigger value="strangers">Strangers</TabsTrigger>
-      </TabsList>
+    <DndContext
+      sensors={sensors}
+      modifiers={[restrictToFirstScrollableAncestor]}
+      collisionDetection={closestCenter}
+      onDragEnd={playerRole === "GM" ? handleDragEnd : () => {}}
+    >
+      <SortableContext
+        items={playerRole === "GM" ? tokens.map((token) => token.item.id) : []}
+        strategy={verticalListSortingStrategy}
+      >
+        <Table tabIndex={-1}>
+          <TableBody>
+            {tokens.map((token) => {
+              const included = getIncluded(
+                token.item.id,
+                appState.includedItems,
+              );
 
-      <TabsContent value="team">
-        <DndContext
-          sensors={sensors}
-          modifiers={[restrictToFirstScrollableAncestor]}
-          collisionDetection={closestCenter}
-          onDragEnd={playerRole === "GM" ? handleDragEnd : () => {}}
-        >
-          <SortableContext
-            items={playerRole === "GM" ? tokens.map((token) => token.item.id) : []}
-            strategy={verticalListSortingStrategy}
-          >
-            <Table tabIndex={-1}>
-              <TableBody>
-                {tokens.map((token) => {
-                  const included = getIncluded(
-                    token.item.id,
-                    appState.includedItems,
-                  );
-    
-                  const handleKeyDown = (
-                    event: React.KeyboardEvent<HTMLTableRowElement>,
-                  ) => {
-                    switch (event.code) {
-                      case "ArrowLeft":
-                        previousDamageOption();
-                        break;
-                      case "ArrowRight":
-                        nextDamageOption();
-                        break;
-                      case "KeyR":
-                        resetDamageOption();
-                        break;
-                    }
-                  };
-    
-                  return (
-                    <SortableTableRow
-                      key={token.item.id}
-                      id={token.item.id}
-                      onKeyDown={handleKeyDown}
+              const handleKeyDown = (
+                event: React.KeyboardEvent<HTMLTableRowElement>,
+              ) => {
+                switch (event.code) {
+                  case "ArrowLeft":
+                    previousDamageOption();
+                    break;
+                  case "ArrowRight":
+                    nextDamageOption();
+                    break;
+                  case "KeyR":
+                    resetDamageOption();
+                    break;
+                }
+              };
+
+              return (
+                <SortableTableRow
+                  key={token.item.id}
+                  id={token.item.id}
+                  onKeyDown={handleKeyDown}
+                >
+                  <div
+                    style={{
+                      marginTop: "8px",
+                      marginBottom: "8px",
+                    }} 
+                  >
+                    <TableCell
+                      style={{
+                        padding: "0px",
+                      }}
+                    >
+                      <div 
+                        style={{
+                          height: "72px",
+                          paddingRight: "16px",
+                          borderLeft: "4px solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent"),
+                        }}
+                      ></div>
+                    </TableCell>
+
+                    <TableCell 
+                      style={{
+                        padding: "0px 0px 0px 0px",
+                      }}
                     >
                       <div
-                        style={{
-                          marginTop: "8px",
-                          marginBottom: "8px",
-                        }} 
+                        className="grid gap-2 align-middle"
                       >
-                        <TableCell
+                        <div 
                           style={{
-                            padding: "0px",
+                            display: "flex",
+                            alignItems: "center",
                           }}
                         >
-                          <div 
-                            style={{
-                              height: "72px",
-                              paddingRight: "16px",
-                              borderLeft: "4px solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent"),
-                            }}
-                          ></div>
-                        </TableCell>
-    
-                        <TableCell 
-                          style={{
-                            padding: "0px 0px 0px 0px",
-                          }}
-                        >
-                          <div
-                            className="grid gap-2 align-middle"
-                          >
-                            <div 
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              <TokenTableCell
-                                token={token}
-                                faded={!included && appState.operation !== "none"}
-                                playerSelection={playerSelection}
-                              />
-                              <TableCell
-                                className="p-1"
-                              ></TableCell>
-                              <VisibilityButton token={token} setTokens={setTokens} />
-                            </div>
-                            <OwnerSelector token={token} setTokens={setTokens} />
-                          </div>
-                        </TableCell>
-                              
-                        <TableCell 
-                          style={{
-                            padding: "0px 8px 0px 8px",
-                          }}
-                        ></TableCell>
-    
-                        <HealthBarMenu token={token} setTokens={setTokens} />
-    
-                        <TableCell 
-                          style={{
-                            padding: "0px 0px 0px 8px",
-                          }}
-                        >
-                          <div 
-                            className="grid justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]"
-                          >
-                            <div
-                              className="col-span-2 flex items-center"
-                            >
-                              <StatInput
-                                parentValue={token.health}
-                                name={"health"}
-                                updateHandler={(target) =>
-                                  handleStatUpdate(
-                                    token.item.id,
-                                    target,
-                                    token.health,
-                                    setTokens,
-                                  )
-                                }
-                              />
-                              <div
-                                style={{
-                                  textAlign: "center",
-                                  width: "8px",
-                                }}
-                              >
-                                {"/"}
-                              </div>
-                              <StatInput
-                                parentValue={token.maxHealth}
-                                name={"maxHealth"}
-                                updateHandler={(target) =>
-                                  handleStatUpdate(
-                                    token.item.id,
-                                    target,
-                                    token.maxHealth,
-                                    setTokens,
-                                  )
-                                }
-                              />
-                            </div>
-                            <StatInput
-                              parentValue={token.tempHealth}
-                              name={"tempHealth"}
-                              updateHandler={(target) =>
-                                handleStatUpdate(
-                                  token.item.id,
-                                  target,
-                                  token.tempHealth,
-                                  setTokens,
-                                )
-                              }
-                            />
-                            <StatInput
-                              parentValue={token.armorClass}
-                              name={"armorClass"}
-                              updateHandler={(target) =>
-                                handleStatUpdate(
-                                  token.item.id,
-                                  target,
-                                  token.armorClass,
-                                  setTokens,
-                                )
-                              }
-                            />
-                          </div>
-                        </TableCell>
+                          <TokenTableCell
+                            token={token}
+                            faded={!included && appState.operation !== "none"}
+                            playerSelection={playerSelection}
+                          />
+                          <TableCell
+                            className="p-1"
+                          ></TableCell>
+                          <VisibilityButton token={token} setTokens={setTokens} />
+                        </div>
+                        <OwnerSelector token={token} setTokens={setTokens} />
                       </div>
-                    </SortableTableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </SortableContext>
-        </DndContext>
-      </TabsContent>
-    </Tabs>
+                    </TableCell>
+                          
+                    <TableCell 
+                      style={{
+                        padding: "0px 8px 0px 8px",
+                      }}
+                    ></TableCell>
+
+                    <HealthBarMenu token={token} setTokens={setTokens} />
+
+                    <TableCell 
+                      style={{
+                        padding: "0px 0px 0px 8px",
+                      }}
+                    >
+                      <div 
+                        className="grid justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]"
+                      >
+                        <div
+                          className="col-span-2 flex items-center"
+                        >
+                          <StatInput
+                            parentValue={token.health}
+                            name={"health"}
+                            updateHandler={(target) =>
+                              handleStatUpdate(
+                                token.item.id,
+                                target,
+                                token.health,
+                                setTokens,
+                              )
+                            }
+                          />
+                          <div
+                            style={{
+                              textAlign: "center",
+                              width: "8px",
+                            }}
+                          >
+                            {"/"}
+                          </div>
+                          <StatInput
+                            parentValue={token.maxHealth}
+                            name={"maxHealth"}
+                            updateHandler={(target) =>
+                              handleStatUpdate(
+                                token.item.id,
+                                target,
+                                token.maxHealth,
+                                setTokens,
+                              )
+                            }
+                          />
+                        </div>
+                        <StatInput
+                          parentValue={token.tempHealth}
+                          name={"tempHealth"}
+                          updateHandler={(target) =>
+                            handleStatUpdate(
+                              token.item.id,
+                              target,
+                              token.tempHealth,
+                              setTokens,
+                            )
+                          }
+                        />
+                        <StatInput
+                          parentValue={token.armorClass}
+                          name={"armorClass"}
+                          updateHandler={(target) =>
+                            handleStatUpdate(
+                              token.item.id,
+                              target,
+                              token.armorClass,
+                              setTokens,
+                            )
+                          }
+                        />
+                      </div>
+                    </TableCell>
+                  </div>
+                </SortableTableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </SortableContext>
+    </DndContext>
   );
 }
 
