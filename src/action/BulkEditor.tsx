@@ -47,8 +47,8 @@ export default function BulkEditor(): JSX.Element {
   useEffect(() => {
       if (playerRole === "PLAYER") {
         // use your prefered values for players here
-        OBR.action.setHeight(344)
-        OBR.action.setWidth(400)
+        OBR.action.setHeight(356)
+        OBR.action.setWidth(216)
       } else {
         // same values as set in the manifest are used for gm
         OBR.action.setHeight(572)
