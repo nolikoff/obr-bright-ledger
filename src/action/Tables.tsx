@@ -210,60 +210,83 @@ function DefaultGMSceneTokensTable({
                     style={{
                       marginTop: "8px",
                       marginBottom: "8px",
-                      borderLeft:
-                        "4px solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent")
                     }} 
                   >
-                    <div className="grid grid-cols-2 justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]">
-                      <TokenTableCell
-                        token={token}
-                        faded={!included && appState.operation !== "none"}
-                        playerSelection={playerSelection}
-                      />
+                    <TableCell>
+                      <div 
+                        style={{
+                          height: "72px",
+                          paddingRight: "16px",
+                          borderLeft: "4px solid " + (players.find((p) => p.id === token.item.createdUserId)?.color ?? "transparent"),
+                      ></div>
+                    </TableCell>
 
-                      <VisibilityButton token={token} setTokens={setTokens} />
-                      
-                      <OwnerSelector token={token} setTokens={setTokens} />
-                    </div>
-
-                    <HealthBarMenu token={token} setTokens={setTokens} />
-                    
-                    <div className="grid grid-cols-2 justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]">
-                      <TableCell>
-                        <StatInput
-                          parentValue={token.health}
-                          name={"health"}
-                          updateHandler={(target) =>
-                            handleStatUpdate(
-                              token.item.id,
-                              target,
-                              token.health,
-                              setTokens,
-                            )
-                          }
-                        />
-                        <div
+                    <TableCell>
+                      <div
+                        className="grid gap-2 align-middle"
+                      >
+                        <div 
                           style={{
-                            textAlign: "center",
-                            width: "8px",
+                            display: "flex",
+                            alignItems: "center",
                           }}
                         >
-                          {"/"}
+                          <TokenTableCell
+                            token={token}
+                            faded={!included && appState.operation !== "none"}
+                            playerSelection={playerSelection}
+                          />
+                          <TableCell></TableCell>
+                          <VisibilityButton token={token} setTokens={setTokens} />
                         </div>
-                        <StatInput
-                          parentValue={token.maxHealth}
-                          name={"maxHealth"}
-                          updateHandler={(target) =>
-                            handleStatUpdate(
-                              token.item.id,
-                              target,
-                              token.maxHealth,
-                              setTokens,
-                            )
-                          }
-                        />
-                      </TableCell>
-                      <TableCell>
+                        <OwnerSelector token={token} setTokens={setTokens} />
+                      </div>
+                    </TableCell>
+                          
+                    <TableCell></TableCell>
+
+                    <HealthBarMenu token={token} setTokens={setTokens} />
+
+                    <TableCell>
+                      <div 
+                        className="grid justify-items-stretch gap-2 grid-template-columns-[1fr 1fr]"
+                      >
+                        <div
+                          className="col-span-2 flex items-center"
+                        >
+                          <StatInput
+                            parentValue={token.health}
+                            name={"health"}
+                            updateHandler={(target) =>
+                              handleStatUpdate(
+                                token.item.id,
+                                target,
+                                token.health,
+                                setTokens,
+                              )
+                            }
+                          />
+                          <div
+                            style={{
+                              textAlign: "center",
+                              width: "8px",
+                            }}
+                          >
+                            {"/"}
+                          </div>
+                          <StatInput
+                            parentValue={token.maxHealth}
+                            name={"maxHealth"}
+                            updateHandler={(target) =>
+                              handleStatUpdate(
+                                token.item.id,
+                                target,
+                                token.maxHealth,
+                                setTokens,
+                              )
+                            }
+                          />
+                        </div>
                         <StatInput
                           parentValue={token.tempHealth}
                           name={"tempHealth"}
@@ -276,8 +299,6 @@ function DefaultGMSceneTokensTable({
                             )
                           }
                         />
-                      </TableCell>
-                      <TableCell>
                         <StatInput
                           parentValue={token.armorClass}
                           name={"armorClass"}
@@ -290,8 +311,8 @@ function DefaultGMSceneTokensTable({
                             )
                           }
                         />
-                      </TableCell>
-                    </div>
+                      </div>
+                    </TableCell>
                   </div>
                 </SortableTableRow>
               );
