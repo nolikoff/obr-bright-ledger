@@ -21,11 +21,13 @@ export default function Header({
   dispatch,
   playerRole,
   playerName,
+  playerColor,
 }: {
   appState: BulkEditorState;
   dispatch: React.Dispatch<Action>;
   playerRole: "PLAYER" | "GM";
   playerName: string;
+  playerColor: string;
 }): JSX.Element {
   return (
     <div>
@@ -36,6 +38,7 @@ export default function Header({
           dispatch={dispatch}
           playerRole={playerRole}
           playerName={playerName}
+          playerColor={playerColor}
         ></Command>
         <>
           <Select
@@ -84,6 +87,7 @@ export default function Header({
           dispatch={dispatch}
           playerRole={playerRole}
           playerName={playerName}
+          playerColor={playerColor}
         ></Command>
         <div class="justify-center h-9">
         </div>
