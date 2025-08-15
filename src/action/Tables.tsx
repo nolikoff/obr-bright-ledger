@@ -453,10 +453,17 @@ function GroupButton({
           >
             {token.hideStats ? (
               <div className="text-primary-500 dark:text-primary-dark">
-                <Team />
+                <Team style={{
+                    width: "28px",
+                  }}
+                />
               </div>
             ) : (
-              <Strangers />
+              <Strangers
+                style={{
+                  width: "28px",
+                }}
+              />
             )}
           </Button>
         </TooltipTrigger>
@@ -496,7 +503,6 @@ function OwnerSelector({
       }}
     >
       <Select
-        className="w-[128px]"
         value={token.item.createdUserId}
         onValueChange={async (value) => {
           await OBR.scene.items.updateItems([token.item], (items) => {
@@ -506,7 +512,12 @@ function OwnerSelector({
           });
         }}
       >
-        <SelectTrigger className="w-[128px] h-[32px]">
+        <SelectTrigger
+          className="h-[32px]"
+          style={{
+            width: "136px",
+          }}
+        >
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
