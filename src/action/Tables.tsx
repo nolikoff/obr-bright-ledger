@@ -529,7 +529,7 @@ function OwnerSelector({
         <SelectTrigger
           className="h-[32px]"
           style={{
-            width: "136px",
+            width: "128px",
           }}
         >
           <SelectValue />
