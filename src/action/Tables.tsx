@@ -40,6 +40,8 @@ import Shown from "@/components/icons/Shown";
 import HiddenHealth from "@/components/icons/HiddenHealth";
 import HealthBar from "@/components/icons/HealthBar";
 import HitPoints from "@/components/icons/HitPoints";
+import Team from "@/components/icons/Team";
+import Strangers from "@/components/icons/Strangers";
 import {
   Tooltip,
   TooltipContent,
@@ -419,6 +421,46 @@ function VisibilityButton({
         </TooltipTrigger>
         <TooltipContent side="right">
           {token.hideStats ? "Hidden" : "Shown"}
+        </TooltipContent>
+      </Tooltip>
+    </TableCell>
+  );
+}
+
+function GroupButton({
+  token,
+  setTokens,
+}: {
+  token: Token;
+  setTokens: React.Dispatch<React.SetStateAction<Token[]>>;
+}): JSX.Element {
+  return (
+    <TableCell className="py-0">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            name={
+              token.hideStats
+                ? "Move to Strangers"
+                : "Move to Team"
+            }
+            onClick={() =>
+              handleVisibilityUpdate(token.item.id, token.hideStats, setTokens)
+            }
+          >
+            {token.hideStats ? (
+              <div className="text-primary-500 dark:text-primary-dark">
+                <Team />
+              </div>
+            ) : (
+              <Strangers />
+            )}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="right">
+          {token.hideStats ? "Team" : "Strangers"}
         </TooltipContent>
       </Tooltip>
     </TableCell>
