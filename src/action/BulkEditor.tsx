@@ -16,6 +16,7 @@ import OBR, { Item } from "@owlbear-rodeo/sdk";
 import { itemFilter, parseItems } from "@/metadataHelpers/itemMetadataHelpers";
 import { addThemeToBody } from "@/colorHelpers";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
@@ -218,15 +219,26 @@ export default function BulkEditor(): JSX.Element {
           playerRole={playerRole}
           playerName={playerName}
         ></Header>
-        <ScrollArea className="h-full sm:px-4">
-          <div className="flex flex-col items-center justify-start gap-2">
-            {getTable()}
-{/*             {playerRole === "GM" && (
-              <ChangeShowItemsButton appState={appState} dispatch={dispatch} />
-            )} */}
-          </div>
-          <ScrollBar orientation="horizontal" forceMount />
-        </ScrollArea>
+        
+        <Tabs defaultValue="room" className="w-full py-4">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="team">Team</TabsTrigger>
+            <TabsTrigger value="strangers">Strangers</TabsTrigger>
+          </TabsList>
+    
+          <TabsContent value="team">
+            <ScrollArea className="h-full sm:px-4">
+              <div className="flex flex-col items-center justify-start gap-2">
+                {getTable()}
+    {/*             {playerRole === "GM" && (
+                  <ChangeShowItemsButton appState={appState} dispatch={dispatch} />
+                )} */}
+              </div>
+              <ScrollBar orientation="horizontal" forceMount />
+            </ScrollArea>
+          </TabsContent>
+        </Tabs>
+        
         <Footer
           appState={appState}
           dispatch={dispatch}
