@@ -11,7 +11,7 @@
       "title": "Bright Ledger",
       "icon": "/icon.svg",
       "popover": "/src/action/action.html",
-      "height": 520,
-      "width": 580
+      "height": 572,
+      "width": 364
   }
 }
