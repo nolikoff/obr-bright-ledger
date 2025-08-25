@@ -1,0 +1,17 @@
+{
+  "name": "Bright Ledger",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "author": "Roman",
+  "homepage_url": "https://github.com/nolikoff/obr-bright-ledger",
+  "description": "Health Bar and Armor Class for your adventures (based on Stat Bubbles for D&D by Seamus Finlayson).",
+  "background_url": "/src/background/background.html",
+  "icon": "/logo.png",
+  "action": {
+      "title": "Bright Ledger",
+      "icon": "/icon.svg",
+      "popover": "/src/action/action.html",
+      "height": 620,
+      "width": 392
+  }
+}
