@@ -168,10 +168,19 @@ export default function DiceRoller({
               <span
                 style={{
                   color: rollerColor,
-                  fontSize: rollerRole === "GM" ? "12px" : "8px", 
+                  // fontSize: rollerRole === "GM" ? "12px" : "8px", 
                 }}
               >
-                {rollerRole === "GM" ? '●' : '■'}
+                {rollerRole === "GM" ? (
+                  <svg width="7" height="7">
+                    <circle cx="3.5" cy="3.5" r="3.5" fill="currentColor" />
+                  </svg>
+                ): (
+                  <svg width="7" height="7">
+                    <rect x="0.5" y="0.5" width="6" height="6" fill="currentColor" />
+                  </svg>
+                )}
+                {/* {rollerRole === "GM" ? '●' : '■'} */}
               </span>
 
               <span className="text-mirage-500 dark:text-mirage-400">
