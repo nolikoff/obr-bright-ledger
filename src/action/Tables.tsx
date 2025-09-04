@@ -733,12 +733,19 @@ function GmDamageTable({
                               className="align-middle flex items-center justify-center"
                               style={{
                                 width: "22px",
-                                fontSize: "10px",
                                 padding: "0px 6px 0px 8px",
                                 color: tokenColor,
                               }}
                             >
-                              {tokenRole === "GM" ? '●' : '■'}
+                              {tokenRole === "GM" ? (
+                                <svg width="8" height="8">
+                                  <circle cx="4" cy="4" r="4" fill="currentColor" />
+                                </svg>
+                              ): (
+                                <svg width="8" height="8">
+                                  <rect x="0.5" y="0.5" width="7" height="7" fill="currentColor" />
+                                </svg>
+                              )}
                             </span>
 
                             <TokenTableCell
@@ -1106,12 +1113,19 @@ function GmHealingTable({
                               className="align-middle flex items-center justify-center"
                               style={{
                                 width: "22px",
-                                fontSize: "10px",
                                 padding: "0px 6px 0px 8px",
                                 color: tokenColor,
                               }}
                             >
-                              {tokenRole === "GM" ? '●' : '■'}
+                              {tokenRole === "GM" ? (
+                                <svg width="8" height="8">
+                                  <circle cx="4" cy="4" r="4" fill="currentColor" />
+                                </svg>
+                              ): (
+                                <svg width="8" height="8">
+                                  <rect x="0.5" y="0.5" width="7" height="7" fill="currentColor" />
+                                </svg>
+                              )}
                             </span>
 
                             <TokenTableCell
@@ -1422,12 +1436,19 @@ function GmOverwriteTable({
                               className="align-middle flex items-center justify-center"
                               style={{
                                 width: "22px",
-                                fontSize: "10px",
                                 padding: "0px 6px 0px 8px",
                                 color: tokenColor,
                               }}
                             >
-                              {tokenRole === "GM" ? '●' : '■'}
+                              {tokenRole === "GM" ? (
+                                <svg width="8" height="8">
+                                  <circle cx="4" cy="4" r="4" fill="currentColor" />
+                                </svg>
+                              ): (
+                                <svg width="8" height="8">
+                                  <rect x="0.5" y="0.5" width="7" height="7" fill="currentColor" />
+                                </svg>
+                              )}
                             </span>
 
                             <TokenTableCell
