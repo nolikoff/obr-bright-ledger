@@ -168,7 +168,7 @@ export default function DiceRoller({
               <span
                 style={{
                   color: rollerColor,
-                  fontSize: "8px", 
+                  fontSize: rollerRole === "GM" ? "12px" : "8px", 
                 }}
               >
                 {rollerRole === "GM" ? '●' : '■'}
