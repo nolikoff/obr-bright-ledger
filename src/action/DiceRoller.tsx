@@ -265,6 +265,8 @@ export default function DiceRoller({
       );
     });
 
+  console.log(OBR.action.getHeight());
+
   return (
     <div
       className="space-y-2"
