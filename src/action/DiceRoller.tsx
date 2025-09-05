@@ -330,10 +330,11 @@ export default function DiceRoller({
             align="end"
             alignOffset={0}
             style={{ 
-              // height: playerRole === "GM" ? 460 : 310,
-              // width: playerRole === "GM" ? 352 : 308, 
-              height: playerRole === "GM" ? "28.75rem" : "19.375rem",
-              width: playerRole === "GM" ? "22rem" : "19.25rem", 
+              // height: playerRole === "GM" ? "460px" : "270px",
+              // width: playerRole === "GM" ? "352px" : "308px", 
+
+              height: playerRole === "GM" ? "28.75rem" : "16.875rem",
+              width: playerRole === "GM" ? "22rem" : "19.25rem",
             }}
           >
             <div className="px-4 pt-2 pb-2">
